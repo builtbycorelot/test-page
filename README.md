@@ -4,6 +4,8 @@ Welcome to the official repository for CORELOT's HTML-based marketing asset libr
 This repo supports the creation, management, and publishing of all branded content for CORELOT Homes
 —ranging from educational blog posts to sales tools, brochures, email templates, and more.
 
+https://builtbycorelot.github.io/test-page/
+
 ## 💠 CORELOT Brand Guidelines
 
 We build everything around one promise:
