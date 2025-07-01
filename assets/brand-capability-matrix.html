@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CORELOT · Brand & Capability Matrix</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-8d6KQpT5s+JZApkD0uYBz0sMi5zBvmX3l3G5E9vZ35xT7V+AxLPvG9WBqjWX4hT3NsNV05jV+JOSjPq3pV8log==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    /* ——— BRAND PALETTE ——— */
+    :root {
+      /* CORELOT */
+      --orange: #cc5500;
+      --orange-light: #e67a33;
+      --gray: #2c3e50;
+      --light-gray: #ecf0f1;
+      --ultra-light: #f8f9fa;
+      /* SheetPros + OnTime */
+      --blue: #005fa3;
+      --blue-light: #3498db;
+      /* Eveready */
+      --gold: #c7a008;
+      --gold-light: #f1c40f;
+      --black: #1a1a1a;
+      --white: #ffffff;
+    }
+
+    /* ——— BASE STYLES ——— */
+    *{box-sizing:border-box;margin:0;padding:0;}
+    html,body{
+      font-family:'Inter','Segoe UI',system-ui,-apple-system,sans-serif;
+      color:var(--black);
+      background:var(--ultra-light);
+      line-height:1.5;
+    }
+    @page{size:8.5in 11in;margin:0.5in;}
+    body{width:8.5in;height:11in;margin:0 auto;background:var(--white);}
+
+    header{text-align:center;padding:0.4in 0 0.2in;}
+    header h1{
+      font-size:2.4rem;
+      font-weight:300;
+      color:var(--gray);
+      letter-spacing:-0.02em;
+      margin-bottom:0.1in;
+    }
+    header .tagline{
+      font-style:italic;
+      font-size:1rem;
+      color:var(--orange);
+      font-weight:400;
+      letter-spacing:0.01em;
+    }
+    .accent-bar{
+      width:60%;
+      height:2px;
+      background:linear-gradient(90deg,var(--orange)0%,var(--gray)35%,var(--blue)65%,var(--gold)100%);
+      margin:0.25in auto;
+    }
+
+    .section-title{
+      font-size:1.1rem;
+      font-weight:500;
+      color:var(--gray);
+      text-align:center;
+      margin:0.3in 0 0.2in;
+      text-transform:uppercase;
+      letter-spacing:0.05em;
+    }
+
+    .brand-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(3.2in,1fr));
+      gap:0.25in;
+      padding:0 0.15in;
+    }
+
+    .brand-card{
+      background:var(--white);
+      border:none;
+      border-radius:2px;
+      padding:0.4in 0.3in;
+      text-align:center;
+      box-shadow:0 1px 3px rgba(0,0,0,0.04);
+      position:relative;
+      transition:all 0.2s ease;
+      overflow:hidden;
+    }
+
+    .brand-card:hover{
+      box-shadow:0 4px 12px rgba(0,0,0,0.08);
+      transform:translateY(-1px);
+    }
+
+    .brand-card::before{
+      content:'';
+      position:absolute;
+      top:0;
+      left:0;
+      right:0;
+      height:3px;
+      background:var(--orange);
+    }
+
+    .icon-container{
+      width:64px;
+      height:64px;
+      margin:0 auto 0.2in;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      border-radius:50%;
+      background:var(--ultra-light);
+      position:relative;
+    }
+
+    .brand-card .icon{
+      font-size:1.8rem;
+      color:var(--orange);
+    }
+
+    .brand-logo{
+      width:48px;
+      height:48px;
+      object-fit:contain;
+      filter:brightness(0.8);
+      display:block;
+      margin:0 auto;
+    }
+
+    .brand-logo:not([src*="."]){
+      display:none;
+    }
+
+    /* Fallback icon styles */
+    .icon-fallback{
+      font-size:1.8rem;
+      color:var(--orange);
+      display:none;
+    }
+
+    .brand-card:has(.brand-logo[src=""]) .icon-fallback,
+    .brand-card:has(.brand-logo:not([src])) .icon-fallback{
+      display:block;
+    }
+
+    .brand-card h2{
+      font-size:1rem;
+      font-weight:600;
+      margin-bottom:0.15in;
+      color:var(--gray);
+      text-transform:uppercase;
+      letter-spacing:0.02em;
+    }
+
+    .brand-card p{
+      font-size:0.85rem;
+      line-height:1.5;
+      color:#5a6c7d;
+      font-weight:400;
+    }
+
+    /* Geometric Symbols */
+    .symbol{
+      position:absolute;
+      top:0.15in;
+      right:0.15in;
+      width:24px;
+      height:24px;
+      opacity:0.1;
+    }
+
+    .corelot-symbol{
+      background:linear-gradient(45deg, var(--orange) 0%, var(--orange-light) 100%);
+      clip-path:polygon(50% 0%, 0% 100%, 100% 100%);
+    }
+
+    .eveready-symbol{
+      background:linear-gradient(45deg, var(--gold) 0%, var(--gold-light) 100%);
+      clip-path:polygon(20% 0%, 0% 20%, 30% 50%, 0% 80%, 20% 100%, 80% 100%, 100% 80%, 70% 50%, 100% 20%, 80% 0%);
+    }
+
+    .blue-symbol{
+      background:linear-gradient(45deg, var(--blue) 0%, var(--blue-light) 100%);
+      border-radius:50%;
+    }
+
+    /* Brand-specific overrides */
+    .corelot::before { background:var(--orange); }
+    .corelot .icon { color:var(--orange); }
+    .corelot .icon-container { background:rgba(204,85,0,0.05); }
+
+    .eveready::before { background:var(--gold); }
+    .eveready .icon { color:var(--gold); }
+    .eveready .icon-container { background:rgba(199,160,8,0.05); }
+
+    .blue-brand::before { background:var(--blue); }
+    .blue-brand .icon { color:var(--blue); }
+    .blue-brand .icon-container { background:rgba(0,95,163,0.05); }
+
+    .mission{
+      background:var(--gray);
+      color:var(--white);
+      padding:0.2in;
+      text-align:center;
+      font-weight:300;
+      font-size:1rem;
+      margin:0.3in 0.5in;
+      letter-spacing:0.02em;
+      border-radius:1px;
+    }
+
+    /* Footer */
+    footer{
+      text-align:center;
+      font-size:0.75rem;
+      color:#7f8c8d;
+      margin-top:0.25in;
+      font-weight:400;
+    }
+    footer a{
+      color:var(--gray);
+      font-weight:500;
+      text-decoration:none;
+    }
+    footer .eho{
+      height:12px;
+      vertical-align:middle;
+      margin-right:4px;
+      opacity:0.8;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Integrated Construction & Supply‑Chain Brands</h1>
+    <p class="tagline">Built for the way you live — Delivered on‑site & on‑time.</p>
+    <div class="accent-bar"></div>
+  </header>
+
+  <!-- ─────────── TOP HALF ─────────── -->
+  <h3 class="section-title">Development, Homes & Construction</h3>
+  <section class="brand-grid">
+    <!-- CORELOT HOMES -->
+    <article class="brand-card corelot">
+      <div class="symbol corelot-symbol"></div>
+      <div class="icon-container">
+        <img src="CORELOT%20Homes%200001%20LOGO%20OB.png" alt="CORELOT Homes Logo" class="brand-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+        <i class="fas fa-home icon-fallback" aria-hidden="true"></i>
+      </div>
+      <h2>CORELOT Homes</h2>
+      <p>Customizable home plans and land packages—helping families build affordably in the communities they love.</p>
+    </article>
+
+    <!-- CORELOT CONSTRUCTION -->
+    <article class="brand-card corelot">
+      <div class="symbol corelot-symbol"></div>
+      <div class="icon-container">
+        <img src="CORELOT%200001%20LOGO.png" alt="CORELOT Logo" class="brand-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+        <i class="fas fa-cube icon-fallback" aria-hidden="true"></i>
+      </div>
+      <h2>CORELOT Construction</h2>
+      <p>Neighbour‑scaled residential and light‑commercial builds, integrating local trades with modular efficiencies.</p>
+    </article>
+
+    <!-- CONSOLIDATED CONTRACTING -->
+    <article class="brand-card corelot">
+      <div class="symbol corelot-symbol"></div>
+      <div class="icon-container">
+        <img src="CORELOT%200001%20LOGO.png" alt="CORELOT Logo" class="brand-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+        <i class="fas fa-clipboard-list icon-fallback" aria-hidden="true"></i>
+      </div>
+      <h2>Consolidated Contracting</h2>
+      <p>Administrative entity delivering comprehensive Project Management Office services—coordinating resources, timelines, and deliverables across all project phases.</p>
+    </article>
+
+    <!-- EVEREADY BUILDERS GROUP -->
+    <article class="brand-card eveready">
+      <div class="symbol eveready-symbol"></div>
+      <div class="icon-container">
+        <img src="000%20OTS%20LOGO.jpg" alt="Eveready Builders Logo" class="brand-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+        <i class="fas fa-landmark icon-fallback" aria-hidden="true"></i>
+      </div>
+      <h2>Eveready Builders Group</h2>
+      <p>Program delivery for civic and institutional projects—lean workflows, BIM coordination, and quality craftsmanship.</p>
+    </article>
+  </section>
+
+  <!-- Mission Divider -->
+  <div class="mission">One family of companies. Every capability under one roof.</div>
+
+  <!-- ─────────── BOTTOM HALF ─────────── -->
+  <h3 class="section-title">Digital Integration & Field Logistics</h3>
+  <section class="brand-grid">
+    <!-- SHEETPROS -->
+    <article class="brand-card blue-brand">
+      <div class="symbol blue-symbol"></div>
+      <div class="icon-container">
+        <img src="SheetPros%20Logo%20Symbol%20(1).png" alt="SheetPros Logo" class="brand-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+        <i class="fas fa-sitemap icon-fallback" aria-hidden="true"></i>
+      </div>
+      <h2>SheetPros</h2>
+      <p>Integrator of work‑management, CRM, and accounting platforms—bringing connected workflows to businesses, individuals, and government agencies.</p>
+    </article>
+
+    <!-- ON TIME SOLUTIONS -->
+    <article class="brand-card blue-brand">
+      <div class="symbol blue-symbol"></div>
+      <div class="icon-container">
+        <img src="000%20OTS%20LOGO.jpg" alt="OnTime Solutions Logo" class="brand-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+        <i class="fas fa-vector-square icon-fallback" aria-hidden="true"></i>
+      </div>
+      <h2>OnTime Solutions</h2>
+      <p>Geospatial software for infrastructure, urban planning, and field operations—turning location data into actionable insights.</p>
+    </article>
+  </section>
+
+  <footer>
+    <p><strong>540‑785‑7500</strong> · <a href="mailto:sales@corelot.net">sales@corelot.net</a> · <a href="https://corelothomes.com">corelothomes.com</a></p>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/8/80/Equal_Housing_Opportunity_Logo.svg" alt="Equal Housing Opportunity" class="eho">Equal Housing Opportunity
+  </footer>
+</body>
+</html>
