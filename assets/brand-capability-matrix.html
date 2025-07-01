@@ -102,8 +102,8 @@
     }
 
     .icon-container{
-      width:64px;
-      height:64px;
+      width:clamp(48px,10vw,72px);
+      height:clamp(48px,10vw,72px);
       margin:0 auto 0.2in;
       display:flex;
       align-items:center;
@@ -119,6 +119,8 @@
     }
 
     .brand-logo{
+      width:80%;
+      height:80%;
       object-fit:contain;
       filter:brightness(0.8);
       display:block;
