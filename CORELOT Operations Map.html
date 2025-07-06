@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CORELOT Operations Map</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, system-ui, sans-serif;
+            background: #fff;
+            color: #000;
+            line-height: 1.6;
+            padding: 40px 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            font-size: 24px;
+            font-weight: 400;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #000;
+        }
+        
+        .section {
+            margin-bottom: 60px;
+        }
+        
+        .section h2 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .entity-card {
+            border: 2px solid #000;
+            padding: 25px;
+            background: #fff;
+        }
+        
+        .entity-card h3 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #e0e0e0;
+            padding-bottom: 10px;
+        }
+        
+        .entity-card .role {
+            font-size: 13px;
+            color: #666;
+            font-style: italic;
+            margin-bottom: 15px;
+        }
+        
+        .services {
+            font-size: 13px;
+            line-height: 1.8;
+        }
+        
+        .naics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .naics-item {
+            border: 1px solid #000;
+            padding: 20px;
+            background: #fff;
+            cursor: pointer;
+            transition: background 0.1s;
+        }
+        
+        .naics-item:hover {
+            background: #f5f5f5;
+        }
+        
+        .naics-code {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .naics-title {
+            font-size: 13px;
+            margin-bottom: 10px;
+        }
+        
+        .psc-code {
+            font-size: 11px;
+            color: #666;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid #e0e0e0;
+        }
+        
+        .nav {
+            margin-bottom: 40px;
+        }
+        
+        .nav ul {
+            list-style: none;
+            display: flex;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .nav li {
+            font-size: 14px;
+        }
+        
+        .nav a {
+            color: #000;
+            text-decoration: none;
+            border-bottom: 1px solid #000;
+            padding-bottom: 1px;
+        }
+        
+        .nav a:hover {
+            border-bottom-width: 2px;
+        }
+        
+        .info-box {
+            border: 1px solid #000;
+            padding: 20px;
+            background: #fafafa;
+            margin-bottom: 40px;
+        }
+        
+        .info-box h3 {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .info-box p {
+            font-size: 13px;
+            color: #666;
+        }
+        
+        .workflow-section {
+            border: 2px solid #000;
+            padding: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .workflow-section h3 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        
+        .workflow-item {
+            padding: 15px 0;
+            border-bottom: 1px solid #e0e0e0;
+            font-size: 13px;
+        }
+        
+        .workflow-item:last-child {
+            border-bottom: none;
+        }
+        
+        .workflow-arrow {
+            display: inline-block;
+            margin: 0 10px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <h1>CORELOT Operations Map</h1>
+    <p class="subtitle">Integrated Real Estate Development & Construction | Founded 2009 | Virginia</p>
+    
+    <nav class="nav">
+        <ul>
+            <li><a href="#entities">Entity Structure</a></li>
+            <li><a href="#domains">NAICS Domains</a></li>
+            <li><a href="#workflows">Core Workflows</a></li>
+        </ul>
+    </nav>
+
+    <div class="info-box">
+        <h3>Mission Statement</h3>
+        <p>Delivery with quality and integrity, building relationships founded on respect.</p>
+    </div>
+
+    <section class="section" id="entities">
+        <h2>Entity Structure</h2>
+        <div class="grid">
+            <div class="entity-card">
+                <h3>CORELOT Inc.</h3>
+                <p class="role">Parent Developer & Investment Sponsor</p>
+                <div class="services">
+                    • Overall strategic direction<br>
+                    • Investment structuring<br>
+                    • Master development planning<br>
+                    • Capital deployment
+                </div>
+            </div>
+            
+            <div class="entity-card">
+                <h3>CORELOT Capital</h3>
+                <p class="role">Fundraising, Syndication & Investment Advisory</p>
+                <div class="services">
+                    • Fund structuring<br>
+                    • Investor relations<br>
+                    • Financial planning<br>
+                    • Real estate syndications
+                </div>
+            </div>
+            
+            <div class="entity-card">
+                <h3>Eveready Builders Group</h3>
+                <p class="role">Large-scale Commercial & Institutional Programs</p>
+                <div class="services">
+                    • Commercial construction<br>
+                    • Institutional facilities<br>
+                    • Multi-phase programs<br>
+                    • Community-relevant projects
+                </div>
+            </div>
+            
+            <div class="entity-card">
+                <h3>Consolidated Contracting LLC</h3>
+                <p class="role">General Contracting & PMO Delivery</p>
+                <div class="services">
+                    • Field management<br>
+                    • Subcontractor coordination<br>
+                    • Quality control<br>
+                    • Safety management
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="domains">
+        <h2>NAICS Domain Operations</h2>
+        <div class="naics-grid">
+            <div class="naics-item" onclick="location.href='CORELOT_Domain_Packs/NAICS_237210_Land_Development/'">
+                <div class="naics-code">237210</div>
+                <div class="naics-title">Land Subdivision & Development</div>
+                <div class="psc-code">PSC: C211 - New Housing Construction</div>
+            </div>
+            
+            <div class="naics-item" onclick="location.href='CORELOT_Domain_Packs/NAICS_236115_Single_Family_Housing/'">
+                <div class="naics-code">236115</div>
+                <div class="naics-title">New Single-Family Housing Construction</div>
+                <div class="psc-code">PSC: C211 - New Housing Construction</div>
+            </div>
+            
+            <div class="naics-item" onclick="location.href='CORELOT_Domain_Packs/NAICS_236116_Multifamily_Housing/'">
+                <div class="naics-code">236116</div>
+                <div class="naics-title">New Multifamily Housing Construction</div>
+                <div class="psc-code">PSC: C211 - New Housing Construction</div>
+            </div>
+            
+            <div class="naics-item" onclick="location.href='CORELOT_Domain_Packs/NAICS_236220_Commercial_Institutional/'">
+                <div class="naics-code">236220</div>
+                <div class="naics-title">Commercial & Institutional Building</div>
+                <div class="psc-code">PSC: Y1AA - Building, New Construction</div>
+            </div>
+            
+            <div class="naics-item" onclick="location.href='CORELOT_Domain_Packs/NAICS_541611_PMO_Services/'">
+                <div class="naics-code">541611</div>
+                <div class="naics-title">PMO & Management Consulting</div>
+                <div class="psc-code">PSC: R703 - Program Management Support</div>
+            </div>
+            
+            <div class="naics-item" onclick="location.href='CORELOT_Domain_Packs/NAICS_541310_Architectural/'">
+                <div class="naics-code">541310</div>
+                <div class="naics-title">Architectural Services</div>
+                <div class="psc-code">PSC: R425 - Architect & Engineering</div>
+            </div>
+            
+            <div class="naics-item" onclick="location.href='CORELOT_Domain_Packs/NAICS_541330_Engineering/'">
+                <div class="naics-code">541330</div>
+                <div class="naics-title">Engineering Services</div>
+                <div class="psc-code">PSC: R408 - Engineering/Technical</div>
+            </div>
+            
+            <div class="naics-item" onclick="location.href='CORELOT_Domain_Packs/NAICS_541620_Environmental/'">
+                <div class="naics-code">541620</div>
+                <div class="naics-title">Environmental Consulting</div>
+                <div class="psc-code">PSC: R499 - Other Professional Services</div>
+            </div>
+            
+            <div class="naics-item" onclick="location.href='CORELOT_Domain_Packs/NAICS_531210_Real_Estate/'">
+                <div class="naics-code">531210</div>
+                <div class="naics-title">Real Estate Agents & Brokers</div>
+                <div class="psc-code">PSC: R701 - RE Project Management</div>
+            </div>
+            
+            <div class="naics-item" onclick="location.href='CORELOT_Domain_Packs/NAICS_523930_Investment/'">
+                <div class="naics-code">523930</div>
+                <div class="naics-title">Investment Advice</div>
+                <div class="psc-code">PSC: R707 - Financial Management</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="workflows">
+        <h2>Core Operational Workflows</h2>
+        
+        <div class="workflow-section">
+            <h3>Capital-to-Construction Flow</h3>
+            <div class="workflow-item">
+                CORELOT Capital (Fund Formation)
+                <span class="workflow-arrow">→</span>
+                CORELOT Inc. (Project Sponsor)
+                <span class="workflow-arrow">→</span>
+                Site Acquisition
+            </div>
+            <div class="workflow-item">
+                Land Development (237210)
+                <span class="workflow-arrow">→</span>
+                Permitting & Approvals (541620)
+                <span class="workflow-arrow">→</span>
+                Infrastructure (237310)
+            </div>
+            <div class="workflow-item">
+                Construction Planning
+                <span class="workflow-arrow">→</span>
+                Consolidated Contracting (Execution)
+                <span class="workflow-arrow">→</span>
+                Quality Assurance
+            </div>
+            <div class="workflow-item">
+                Project Delivery
+                <span class="workflow-arrow">→</span>
+                Asset Management (531210)
+                <span class="workflow-arrow">→</span>
+                Investor Returns
+            </div>
+        </div>
+        
+        <div class="workflow-section">
+            <h3>Institutional Project Flow</h3>
+            <div class="workflow-item">
+                Eveready Builders (Prime Contract)
+                <span class="workflow-arrow">→</span>
+                Design Services (541310/541330)
+                <span class="workflow-arrow">→</span>
+                Regulatory Compliance
+            </div>
+            <div class="workflow-item">
+                PMO Services (541611)
+                <span class="workflow-arrow">→</span>
+                Subcontractor Management
+                <span class="workflow-arrow">→</span>
+                Schedule & Budget Control
+            </div>
+            <div class="workflow-item">
+                Field Operations
+                <span class="workflow-arrow">→</span>
+                Quality Control & Inspection
+                <span class="workflow-arrow">→</span>
+                Project Closeout
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>NFL System Architecture</h2>
+        <div class="grid">
+            <div class="entity-card">
+                <h3>NFL Fundamentals</h3>
+                <p class="role">Core NFL Components & Lexical Packs</p>
+                <div class="services">
+                    • Base NFL specification<br>
+                    • Standard lexical components<br>
+                    • Depth management system<br>
+                    • Context loading protocols
+                </div>
+            </div>
+            
+            <div class="entity-card">
+                <h3>CORELOT Domain Packs</h3>
+                <p class="role">NAICS-Specific Operational Packs</p>
+                <div class="services">
+                    • Domain-specific workflows<br>
+                    • Regulatory requirements<br>
+                    • Inter-entity relationships<br>
+                    • Process standardization
+                </div>
+            </div>
+            
+            <div class="entity-card">
+                <h3>Integration Layer</h3>
+                <p class="role">Cross-Domain Orchestration</p>
+                <div class="services">
+                    • Entity relationship mapping<br>
+                    • Workflow interoperability<br>
+                    • Data flow management<br>
+                    • Audit trail maintenance
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
