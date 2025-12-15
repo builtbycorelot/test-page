@@ -44,6 +44,7 @@ Use only the official **horizontal logo** or **CORELOT symbol**. Include the Equ
 - `blogs/` → Individual educational blog posts
 - `assets/` → Brochures, email templates, one-pagers
 - `marketing/` → Tools, catalogs, campaigns, tracking
+- `INVOICE_AND_STATEMENT_STANDARD.md` → Public vendor policy for invoices and statements
 
 ---
 
