@@ -1,0 +1,44 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import LandCard from '../../components/LandCard.astro';
+import { getCollection } from 'astro:content';
+
+const land = (await getCollection('land')).sort((a, b) => a.data.address.localeCompare(b.data.address));
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: 'Homesites',
+  itemListElement: land.map((lot, index) => ({
+    '@type': 'ListItem',
+    position: index + 1,
+    url: `/land/${lot.slug}/`,
+    name: lot.data.address,
+  })),
+};
+---
+<BaseLayout
+  title="CORELOT Land Inventory"
+  description="Browse CORELOT-ready homesites across Virginia with status, gallery images, and WL Martin plan fit guidance."
+  canonicalPath="/land/"
+  structuredData={structuredData}
+>
+  <header class="page-header">
+    <p class="pill">Homesites</p>
+    <h1>Land packages ready for CORELOT construction.</h1>
+    <p class="lede">Each listing is validated for missing images or duplicate slugs before publishing so you always see accurate availability.</p>
+  </header>
+
+  <div class="grid">
+    {land.map((parcel) => <LandCard parcel={parcel} />)}
+  </div>
+</BaseLayout>
+
+<style>
+.page-header { margin-bottom: 1.5rem; }
+.lede { color: #4b5563; }
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1rem;
+}
+</style>

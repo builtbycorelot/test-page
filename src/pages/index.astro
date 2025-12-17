@@ -1,0 +1,249 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PlanCard from '../components/PlanCard.astro';
+import LandCard from '../components/LandCard.astro';
+import { getCollection } from 'astro:content';
+
+const plans = (await getCollection('plans')).sort((a, b) => b.data.sqft - a.data.sqft);
+const land = (await getCollection('land')).sort((a, b) => a.data.address.localeCompare(b.data.address));
+
+const assetPages = [
+  { title: 'Brand capability matrix', href: '/assets/brand-capability-matrix.html' },
+  { title: 'Brand guide', href: '/assets/brand-guide.html' },
+  { title: 'Community brochure', href: '/assets/community-brochure.html' },
+  { title: 'Email template', href: '/assets/email-template.html' },
+  { title: 'House plan brochures', href: '/assets/house-plan-brochures.html' },
+  { title: 'Single home email', href: '/assets/single-home-email.html' },
+  { title: 'Single home social', href: '/assets/single-home-social.html' },
+  { title: 'Site plan exhibit', href: '/assets/site-plan-exhibit.html' },
+  { title: 'Spot lot flyer', href: '/assets/spot-lot-flyer.html' },
+  { title: 'Subdivision email', href: '/assets/subdivision-email.html' }
+];
+
+const marketingPages = [
+  { title: 'Add Scott Hine', href: '/marketing/add-scott-hine.html' },
+  { title: 'Analytics', href: '/marketing/analytics.html' },
+  { title: 'Google Ads', href: '/marketing/google-ads.html' },
+  { title: 'Houzz', href: '/marketing/houzz.html' },
+  { title: 'Lot catalog', href: '/marketing/lot-catalog.html' },
+  { title: 'Plan catalog', href: '/marketing/plan-catalog.html' },
+  { title: 'White Oak sign', href: '/marketing/white-oak-sign.html' }
+];
+
+const blogPages = [
+  'add-value-home','affordable-meaning','beautiful-lawn-guide','build-on-your-lot','construction-perm-loan-benefits','corelot-design-process','corelot-products','financing-overview','home-style-selection','house-lot-options','house-match','lot-affordability','lot-feasibility','low-maintenance-homes','planning-pricing-wlmartin','production-vs-custom','restaurant-vs-builder','sales-process','the-lot','warranty-cost','what-is-quality','who-is-corelot','why-rent-own'
+].map((slug) => ({
+  title: slug.split('-').map((part) => part.charAt(0).toUpperCase() + part.slice(1)).join(' '),
+  href: `/blogs/${slug}.html`
+}));
+
+const otherPages = [
+  { title: 'Legacy index', href: '/legacy-index.html' },
+  { title: 'Operations map', href: '/CORELOT%20Operations%20Map.html' },
+  { title: 'Invoice & Statement Standard', href: '/INVOICE_AND_STATEMENT_STANDARD.md' }
+];
+
+const structuredData = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: 'CORELOT Plans',
+    itemListElement: plans.map((plan, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      url: `/plans/${plan.slug}/`,
+      name: plan.data.title,
+    })),
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: 'Available Land',
+    itemListElement: land.map((lot, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      url: `/land/${lot.slug}/`,
+      name: lot.data.address,
+    })),
+  },
+];
+---
+<BaseLayout
+  title="CORELOT Homes | Built for the way you live"
+  description="On-your-lot homes, WL Martin inspired plans, and move-in ready lots across Virginia and the DC metro area."
+  canonicalPath="/"
+  structuredData={structuredData}
+>
+  <section class="hero">
+    <div class="hero-copy">
+      <p class="pill">Built for the way you live</p>
+      <h1>Virginia homes grounded in real construction details.</h1>
+      <p class="lede">CORELOT Homes pairs WL Martin Homes plans with transparent budgeting, land services, and financing options so you know what it takes to build before you break ground.</p>
+      <div class="hero-actions">
+        <a class="btn primary" href="/plans">Explore plans</a>
+        <a class="btn ghost" href="/contact">Talk with a builder</a>
+      </div>
+    </div>
+    <div class="hero-panel">
+      <p class="eyebrow">WL Martin Homes + CORELOT</p>
+      <p>Floor plans are curated as code-backed JSON entries, validated at build time for accuracy. Every plan and lot page is pre-rendered for SEO performance.</p>
+      <ul class="feature-list">
+        <li>Strict content validation before deploy</li>
+        <li>Static, search-friendly Astro output</li>
+        <li>Mobile-first responsive layouts</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-heading">
+      <h2>Featured plans</h2>
+      <a href="/plans">See all plans</a>
+    </div>
+    <div class="grid">
+      {plans.map((plan) => <PlanCard plan={plan} />)}
+    </div>
+  </section>
+
+  <section>
+    <div class="section-heading">
+      <h2>Available land</h2>
+      <a href="/land">See all land</a>
+    </div>
+    <div class="grid">
+      {land.map((parcel) => <LandCard parcel={parcel} />)}
+    </div>
+  </section>
+
+  <section class="info-panels">
+    <article>
+      <h3>Financing guidance</h3>
+      <p>Understand construction-perm loans and budget ranges before you select your plan.</p>
+      <a href="/financing">Read the financing page</a>
+    </article>
+    <article>
+      <h3>About CORELOT</h3>
+      <p>Learn how we coordinate site prep, WL Martin plan packages, and local trade partners.</p>
+      <a href="/about">Read about us</a>
+    </article>
+    <article>
+      <h3>Stay connected</h3>
+      <p>Review every brochure, marketing asset, and blog post in one place.</p>
+      <a href="#library">Jump to the library</a>
+    </article>
+  </section>
+
+  <section id="library">
+    <h2>Full site library</h2>
+    <p>Every existing page remains available and is linked below for fast access.</p>
+    <div class="link-grid">
+      <div>
+        <h3>Blogs</h3>
+        <ul>
+          {blogPages.map((page) => (
+            <li><a href={page.href}>{page.title}</a></li>
+          ))}
+        </ul>
+      </div>
+      <div>
+        <h3>Marketing</h3>
+        <ul>
+          {marketingPages.map((page) => (
+            <li><a href={page.href}>{page.title}</a></li>
+          ))}
+        </ul>
+      </div>
+      <div>
+        <h3>Assets</h3>
+        <ul>
+          {assetPages.map((page) => (
+            <li><a href={page.href}>{page.title}</a></li>
+          ))}
+        </ul>
+      </div>
+      <div>
+        <h3>Other references</h3>
+        <ul>
+          {otherPages.map((page) => (
+            <li><a href={page.href}>{page.title}</a></li>
+          ))}
+          <li><a href="/plans">Plans index</a></li>
+          <li><a href="/land">Land index</a></li>
+          <li><a href="/about">About</a></li>
+          <li><a href="/financing">Financing</a></li>
+          <li><a href="/contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+.hero {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  align-items: center;
+}
+.hero-copy h1 {
+  margin-top: 0.35rem;
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+}
+.lede {
+  font-size: 1.05rem;
+  color: #4b5563;
+}
+.hero-panel {
+  background: linear-gradient(135deg, #0d2340, #16325b);
+  color: #fff;
+  padding: 1.25rem;
+  border-radius: 16px;
+  box-shadow: 0 1rem 2rem rgba(0,0,0,0.1);
+}
+.hero-panel .feature-list {
+  margin: 1rem 0 0;
+  padding-left: 1.25rem;
+}
+.hero-panel li { margin-bottom: 0.35rem; }
+.hero-actions { display: flex; gap: 0.75rem; margin-top: 1rem; flex-wrap: wrap; }
+.btn {
+  display: inline-flex;
+  padding: 0.75rem 1.15rem;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 700;
+  border: 2px solid transparent;
+}
+.btn.primary { background: var(--accent); color: #fff; }
+.btn.ghost { border-color: var(--accent); color: var(--accent); }
+.section-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
+}
+.info-panels {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  margin-top: 2rem;
+}
+.info-panels article {
+  border: 1px solid #ececec;
+  border-radius: 12px;
+  padding: 1rem;
+  background: #f8f9fb;
+}
+.link-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 1rem;
+}
+.link-grid ul { padding-left: 1rem; }
+</style>

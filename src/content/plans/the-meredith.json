@@ -1,0 +1,14 @@
+{
+  "title": "The Meredith",
+  "slug": "the-meredith",
+  "sqft": 2450,
+  "beds": 4,
+  "baths": 2.5,
+  "summary": "Open concept plan with flexible options inspired by WL Martin Homes and tailored for Northern Virginia living.",
+  "heroImage": "/images/plans/the-meredith/hero.svg",
+  "gallery": [
+    "/images/plans/the-meredith/01.svg",
+    "/images/plans/the-meredith/02.svg"
+  ],
+  "tags": ["Popular", "WL Martin Homes"]
+}
