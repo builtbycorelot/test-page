@@ -4,12 +4,12 @@ import type { CollectionEntry } from 'astro:content';
 const { parcel } = Astro.props as { parcel: CollectionEntry<'land'> };
 ---
 <article class="card">
-  <a href={`/land/${parcel.slug}/`} class="card-media" aria-label={`View ${parcel.data.address}`}>
+  <a href={`/land/${parcel.id}/`} class="card-media" aria-label={`View ${parcel.data.address}`}>
     <img src={parcel.data.heroImage} alt={`${parcel.data.address} homesite`} loading="lazy" />
   </a>
   <div class="card-body">
     <p class="eyebrow">{parcel.data.status}</p>
-    <h3><a href={`/land/${parcel.slug}/`}>{parcel.data.address}</a></h3>
+    <h3><a href={`/land/${parcel.id}/`}>{parcel.data.address}</a></h3>
     {parcel.data.summary && <p>{parcel.data.summary}</p>}
   </div>
 </article>

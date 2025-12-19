@@ -4,12 +4,12 @@ import type { CollectionEntry } from 'astro:content';
 const { plan } = Astro.props as { plan: CollectionEntry<'plans'> };
 ---
 <article class="card">
-  <a href={`/plans/${plan.slug}/`} class="card-media" aria-label={`View ${plan.data.title}`}>
+  <a href={`/plans/${plan.id}/`} class="card-media" aria-label={`View ${plan.data.title}`}>
     <img src={plan.data.heroImage} alt={`${plan.data.title} rendering`} loading="lazy" />
   </a>
   <div class="card-body">
     <p class="eyebrow">{plan.data.sqft} sqft • {plan.data.beds} beds • {plan.data.baths} baths</p>
-    <h3><a href={`/plans/${plan.slug}/`}>{plan.data.title}</a></h3>
+    <h3><a href={`/plans/${plan.id}/`}>{plan.data.title}</a></h3>
     <p>{plan.data.summary}</p>
     {plan.data.tags && (
       <ul class="tag-row">

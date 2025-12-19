@@ -51,7 +51,7 @@ const structuredData = [
     itemListElement: plans.map((plan, index) => ({
       '@type': 'ListItem',
       position: index + 1,
-      url: `/plans/${plan.slug}/`,
+      url: `/plans/${plan.id}/`,
       name: plan.data.title,
     })),
   },
@@ -62,7 +62,7 @@ const structuredData = [
     itemListElement: land.map((lot, index) => ({
       '@type': 'ListItem',
       position: index + 1,
-      url: `/land/${lot.slug}/`,
+      url: `/land/${lot.id}/`,
       name: lot.data.address,
     })),
   },
