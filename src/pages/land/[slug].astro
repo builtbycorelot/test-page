@@ -21,16 +21,16 @@ const breadcrumbLd = {
   '@type': 'BreadcrumbList',
   itemListElement: [
     { '@type': 'ListItem', position: 1, name: 'Land', item: '/land/' },
-    { '@type': 'ListItem', position: 2, name: parcel.data.address, item: `/land/${parcel.slug}/` },
+    { '@type': 'ListItem', position: 2, name: parcel.data.address, item: `/land/${slug}/` },
   ],
 };
 
-const nearby = (await getCollection('land')).filter((item) => item.slug !== parcel.slug).slice(0, 2);
+const nearby = (await getCollection('land')).filter((item) => item.id !== slug).slice(0, 2);
 ---
 <BaseLayout
   title={`${parcel.data.address} | CORELOT Land`}
   description={parcel.data.summary ?? `${parcel.data.address} ${parcel.data.status}`}
-  canonicalPath={`/land/${parcel.slug}/`}
+  canonicalPath={`/land/${slug}/`}
   structuredData={breadcrumbLd}
 >
   <header class="page-header">
@@ -65,7 +65,7 @@ const nearby = (await getCollection('land')).filter((item) => item.slug !== parc
     <section>
       <h2>Nearby opportunities</h2>
       <div class="grid">
-        {nearby.map((lot) => <a class="inline-card" href={`/land/${lot.slug}/`}>{lot.data.address}</a>)}
+        {nearby.map((lot) => <a class="inline-card" href={`/land/${lot.id}/`}>{lot.data.address}</a>)}
       </div>
     </section>
   )}

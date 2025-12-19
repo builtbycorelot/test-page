@@ -5,7 +5,9 @@ const staticRoutes = [
   '/plans/',
   '/land/',
   '/about',
+  '/process',
   '/financing',
+  '/faq',
   '/contact',
   '/legacy-index.html',
   '/CORELOT%20Operations%20Map.html',
@@ -56,8 +58,8 @@ export async function GET() {
   const plans = await getCollection('plans');
   const land = await getCollection('land');
   const dynamicRoutes = [
-    ...plans.map((plan) => `/plans/${plan.slug}/`),
-    ...land.map((lot) => `/land/${lot.slug}/`),
+    ...plans.map((plan) => `/plans/${plan.id}/`),
+    ...land.map((lot) => `/land/${lot.id}/`),
   ];
 
   const pages = [...staticRoutes, ...dynamicRoutes];
