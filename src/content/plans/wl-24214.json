@@ -1,0 +1,32 @@
+{
+  "title": "WL Martin Plan 24214",
+  "slug": "wl-24214",
+  "wlPlanNumber": "24214",
+  "sqft": 1750,
+  "beds": 3,
+  "baths": 2,
+  "stories": 1,
+  "category": "Builder Spec",
+  "summary": "Starter-friendly single-story builder spec with smart space planning and value pricing.",
+  "description": "Plan 24214 targets first-time buyers and downsizers with a thoughtful 1,750 sqft layout. The ranch design keeps everything on one level while the open concept main area creates a spacious impression. This plan has proven popular with builders focusing on affordability without sacrificing livability or curb appeal.",
+  "features": [
+    "Starter home friendly",
+    "1,750 sqft single-story",
+    "Three bedrooms",
+    "Two full bathrooms",
+    "Open great room",
+    "Eat-in kitchen",
+    "Owner's suite",
+    "Covered porch",
+    "Two-car garage",
+    "Affordable construction"
+  ],
+  "heroImage": "/images/plans/wl-24214/hero.svg",
+  "gallery": [
+    "/images/plans/wl-24214/hero.svg",
+    "/images/plans/wl-24214/01.svg"
+  ],
+  "tags": ["Builder Spec", "Starter Home", "Ranch", "Affordable"],
+  "wlMartinUrl": "https://wlmartinhomes.com/house-plan-details?plan_id=24214",
+  "manufacturer": "WL Martin Homes"
+}

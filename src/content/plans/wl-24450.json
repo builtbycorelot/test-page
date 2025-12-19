@@ -1,0 +1,32 @@
+{
+  "title": "WL Martin Plan 24450",
+  "slug": "wl-24450",
+  "wlPlanNumber": "24450",
+  "sqft": 650,
+  "beds": 1,
+  "baths": 1,
+  "stories": 1,
+  "category": "Tiny Home",
+  "summary": "Compact tiny home with efficient layout and modern finishes, perfect for downsizing or accessory dwelling.",
+  "description": "Plan 24450 proves that small can be stylish and functional. This 650 sqft tiny home features an open living area, full kitchen, bedroom with closet, and complete bathroom. Large windows and high ceilings create an airy feel while thoughtful storage solutions maximize every inch. Ideal as an ADU, guest cottage, or primary residence for minimalist living.",
+  "features": [
+    "Efficient 650 sqft footprint",
+    "Open concept living and kitchen",
+    "Full-size appliances",
+    "Bedroom with closet",
+    "Complete bathroom",
+    "Covered front porch",
+    "High ceilings for spacious feel",
+    "Energy-efficient design",
+    "ADU-ready plans",
+    "Minimal maintenance"
+  ],
+  "heroImage": "/images/plans/wl-24450/hero.svg",
+  "gallery": [
+    "/images/plans/wl-24450/hero.svg",
+    "/images/plans/wl-24450/01.svg"
+  ],
+  "tags": ["Tiny Home", "ADU", "Single Story", "Efficient"],
+  "wlMartinUrl": "https://wlmartinhomes.com/house-plan-details?plan_id=24450",
+  "manufacturer": "WL Martin Homes"
+}

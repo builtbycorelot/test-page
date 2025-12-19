@@ -1,0 +1,31 @@
+{
+  "title": "WL Martin Plan 24461",
+  "slug": "wl-24461",
+  "wlPlanNumber": "24461",
+  "sqft": 2280,
+  "beds": 3,
+  "baths": 2.5,
+  "stories": 1,
+  "category": "Barndominium",
+  "summary": "Spacious barndominium with split bedroom layout and optional bonus space above.",
+  "description": "Plan 24461 offers generous square footage in a barndominium package with sophisticated space planning. The open living area features soaring ceilings and abundant natural light while private bedrooms provide quiet retreats. Optional bonus space above the main level adds versatility for storage, guest quarters, or hobby space. Built to accommodate metal building construction or traditional framing.",
+  "features": [
+    "Spacious barndominium footprint",
+    "Vaulted ceilings in great room",
+    "Gourmet kitchen with island",
+    "Split bedroom floor plan",
+    "Owner's suite with spa bath",
+    "Optional bonus room above",
+    "Covered front and rear porches",
+    "Flexible storage or workshop area",
+    "Metal building ready",
+    "Energy Star compatible"
+  ],
+  "heroImage": "/images/plans/wl-24461/hero.svg",
+  "gallery": [
+    "/images/plans/wl-24461/hero.svg"
+  ],
+  "tags": ["Barndominium", "Spacious", "Bonus Space", "Metal Building"],
+  "wlMartinUrl": "https://wlmartinhomes.com/house-plan-details?plan_id=24461",
+  "manufacturer": "WL Martin Homes"
+}

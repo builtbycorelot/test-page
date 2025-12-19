@@ -2,6 +2,13 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getEntry, getCollection } from 'astro:content';
 
+export async function getStaticPaths() {
+  const landEntries = await getCollection('land');
+  return landEntries.map((entry) => ({
+    params: { slug: entry.id },
+  }));
+}
+
 const { slug } = Astro.params;
 const parcel = await getEntry('land', slug!);
 

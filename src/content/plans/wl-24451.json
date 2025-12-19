@@ -1,0 +1,32 @@
+{
+  "title": "WL Martin Plan 24451",
+  "slug": "wl-24451",
+  "wlPlanNumber": "24451",
+  "sqft": 850,
+  "beds": 2,
+  "baths": 1,
+  "stories": 1,
+  "category": "Tiny Home",
+  "summary": "Two-bedroom tiny home with flexible living space and charming cottage appeal.",
+  "description": "Plan 24451 expands on tiny home living with two bedrooms and 850 sqft of well-planned space. The open great room combines living, dining, and kitchen while bedrooms provide private retreats. A covered porch extends living space outdoors. This design works beautifully as a guest house, rental unit, or primary residence for those embracing simplified living.",
+  "features": [
+    "Two bedroom tiny home",
+    "Open great room concept",
+    "Galley kitchen with dining",
+    "Split bedroom layout",
+    "Full bathroom with tub/shower",
+    "Covered porch for outdoor living",
+    "Efficient mechanical systems",
+    "Storage throughout",
+    "Guest house ready",
+    "Low utility costs"
+  ],
+  "heroImage": "/images/plans/wl-24451/hero.svg",
+  "gallery": [
+    "/images/plans/wl-24451/hero.svg",
+    "/images/plans/wl-24451/01.svg"
+  ],
+  "tags": ["Tiny Home", "Two Bedroom", "Cottage", "Guest House"],
+  "wlMartinUrl": "https://wlmartinhomes.com/house-plan-details?plan_id=24451",
+  "manufacturer": "WL Martin Homes"
+}

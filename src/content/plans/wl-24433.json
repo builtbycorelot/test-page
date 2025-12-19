@@ -1,0 +1,31 @@
+{
+  "title": "WL Martin Plan 24433",
+  "slug": "wl-24433",
+  "wlPlanNumber": "24433",
+  "sqft": 1850,
+  "beds": 3,
+  "baths": 2,
+  "stories": 1,
+  "category": "Barndominium",
+  "summary": "Single-story barndominium with open living spaces and flexible workshop or storage areas.",
+  "description": "Plan 24433 embraces the barndominium lifestyle with a versatile open floor plan designed for both living and working. The single-story layout features high ceilings, expansive windows, and minimal interior walls to maximize flexibility. Perfect for rural homesites or those seeking a workshop-adjacent living space. Metal building exterior options provide durability and low maintenance.",
+  "features": [
+    "Open concept barndominium design",
+    "High ceilings throughout",
+    "Large great room with kitchen",
+    "Three bedrooms with walk-in closets",
+    "Split bedroom layout",
+    "Covered porch entry",
+    "Optional workshop area",
+    "Metal building compatibility",
+    "Concrete slab foundation",
+    "Energy-efficient design"
+  ],
+  "heroImage": "/images/plans/wl-24433/hero.svg",
+  "gallery": [
+    "/images/plans/wl-24433/hero.svg"
+  ],
+  "tags": ["Barndominium", "Single Story", "Open Concept", "Workshop"],
+  "wlMartinUrl": "https://wlmartinhomes.com/house-plan-details?plan_id=24433",
+  "manufacturer": "WL Martin Homes"
+}

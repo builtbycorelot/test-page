@@ -1,0 +1,32 @@
+{
+  "title": "WL Martin Plan 24223",
+  "slug": "wl-24223",
+  "wlPlanNumber": "24223",
+  "sqft": 1875,
+  "beds": 3,
+  "baths": 2,
+  "stories": 1,
+  "category": "Builder Spec",
+  "summary": "Compact single-story builder spec with efficient layout and cost-effective construction.",
+  "description": "Plan 24223 delivers single-level living in a compact, budget-friendly footprint. The efficient layout provides three bedrooms and two full baths without wasting space on unnecessary hallways. This proven design keeps construction costs predictable while delivering the essential features buyers expect in a ranch home.",
+  "features": [
+    "Efficient 1,875 sqft layout",
+    "Single-story convenience",
+    "Three bedrooms",
+    "Two full bathrooms",
+    "Open kitchen and living",
+    "Owner's suite with private bath",
+    "Two-car garage",
+    "Covered porch",
+    "Simple construction details",
+    "Cost-effective design"
+  ],
+  "heroImage": "/images/plans/wl-24223/hero.svg",
+  "gallery": [
+    "/images/plans/wl-24223/hero.svg",
+    "/images/plans/wl-24223/01.svg"
+  ],
+  "tags": ["Builder Spec", "Ranch", "Compact", "Value"],
+  "wlMartinUrl": "https://wlmartinhomes.com/house-plan-details?plan_id=24223",
+  "manufacturer": "WL Martin Homes"
+}

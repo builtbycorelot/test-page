@@ -1,0 +1,33 @@
+{
+  "title": "WL Martin Plan 24442",
+  "slug": "wl-24442",
+  "wlPlanNumber": "24442",
+  "sqft": 980,
+  "beds": 2,
+  "baths": 1.5,
+  "stories": 1,
+  "category": "Tiny Home",
+  "summary": "Spacious tiny home with loft potential and modern farmhouse styling.",
+  "description": "Plan 24442 maximizes tiny home living with thoughtful design and optional loft space. The main level offers two bedrooms, 1.5 baths, and an open living area while vaulted ceilings create volume and light. Front and rear porches expand usable space seasonally. This plan bridges the gap between tiny home efficiency and traditional home comfort.",
+  "features": [
+    "980 sqft main level",
+    "Optional loft above",
+    "Vaulted ceilings",
+    "Two bedrooms with closets",
+    "1.5 bathrooms",
+    "Open kitchen and living",
+    "Front and rear covered porches",
+    "Modern farmhouse details",
+    "Energy-efficient envelope",
+    "Flexible floor plan"
+  ],
+  "heroImage": "/images/plans/wl-24442/hero.svg",
+  "gallery": [
+    "/images/plans/wl-24442/hero.svg",
+    "/images/plans/wl-24442/01.svg",
+    "/images/plans/wl-24442/02.svg"
+  ],
+  "tags": ["Tiny Home", "Loft", "Farmhouse", "Vaulted Ceilings"],
+  "wlMartinUrl": "https://wlmartinhomes.com/house-plan-details?plan_id=24442",
+  "manufacturer": "WL Martin Homes"
+}

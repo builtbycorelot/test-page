@@ -1,0 +1,32 @@
+{
+  "title": "WL Martin Plan 24418",
+  "slug": "wl-24418",
+  "wlPlanNumber": "24418",
+  "sqft": 1950,
+  "beds": 3,
+  "baths": 2,
+  "stories": 1,
+  "category": "Builder Spec",
+  "summary": "Single-story builder spec with split bedroom layout and efficient square footage.",
+  "description": "Plan 24418 offers single-level convenience in a builder-friendly package. The split bedroom layout separates the owner's suite from secondary bedrooms for privacy while the open living areas create a spacious feel. This ranch design minimizes construction complexity while delivering the features today's buyers expect.",
+  "features": [
+    "Single-story ranch design",
+    "Split bedroom floor plan",
+    "Open great room and kitchen",
+    "Owner's suite with private bath",
+    "Two additional bedrooms",
+    "2-car garage",
+    "Covered porch",
+    "Efficient mechanical runs",
+    "Simple roofline",
+    "Builder-tested layout"
+  ],
+  "heroImage": "/images/plans/wl-24418/hero.svg",
+  "gallery": [
+    "/images/plans/wl-24418/hero.svg",
+    "/images/plans/wl-24418/01.svg"
+  ],
+  "tags": ["Builder Spec", "Ranch", "Single Story", "Split Bedrooms"],
+  "wlMartinUrl": "https://wlmartinhomes.com/house-plan-details?plan_id=24418",
+  "manufacturer": "WL Martin Homes"
+}
