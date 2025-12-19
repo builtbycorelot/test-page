@@ -1,0 +1,45 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+<BaseLayout
+  title="Contact CORELOT Homes"
+  description="Schedule a consultation for CORELOT and WL Martin Homes plans, land packages, and financing guidance."
+  canonicalPath="/contact"
+>
+  <header class="page-header">
+    <p class="pill">Contact</p>
+    <h1>Talk with a builder.</h1>
+    <p class="lede">Share your homesite, preferred WL Martin plan, and target timeline. We respond within one business day.</p>
+  </header>
+
+  <section class="contact-grid">
+    <div>
+      <h2>Start with a call</h2>
+      <p>📞 <a href="tel:15407857500">540.785.7500</a></p>
+      <p>📧 <a href="mailto:Sales@corelot.net">Sales@corelot.net</a></p>
+    </div>
+    <div>
+      <h2>What to include</h2>
+      <ul>
+        <li>Your land address or parcel ID</li>
+        <li>Preferred plan and structural options</li>
+        <li>Ideal budget and timeline</li>
+      </ul>
+    </div>
+    <div>
+      <h2>Visit us</h2>
+      <p>Virginia &amp; DC Metro<br />By appointment</p>
+      <p><a href="/land">See land packages</a></p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+.page-header { margin-bottom: 1.5rem; }
+.lede { color: #4b5563; }
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+}
+</style>

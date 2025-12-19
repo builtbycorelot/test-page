@@ -1,0 +1,86 @@
+---
+const navLinks = [
+  { href: '/', label: 'Home' },
+  { href: '/plans', label: 'Plans' },
+  { href: '/land', label: 'Land' },
+  { href: '/about', label: 'About' },
+  { href: '/financing', label: 'Financing' },
+  { href: '/contact', label: 'Contact' },
+];
+---
+<header class="site-header">
+  <div class="brand">
+    <span class="brand-mark" aria-hidden="true">⬡</span>
+    <a href="/" class="brand-name">CORELOT Homes</a>
+  </div>
+  <nav aria-label="Primary navigation">
+    <ul>
+      {navLinks.map((link) => (
+        <li><a href={link.href}>{link.label}</a></li>
+      ))}
+    </ul>
+  </nav>
+</header>
+
+<style>
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid #ececec;
+  position: sticky;
+  top: 0;
+  background: #fff;
+  z-index: 10;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.brand-name {
+  font-weight: 700;
+  font-size: 1.1rem;
+  text-decoration: none;
+  color: #0d2340;
+}
+.brand-mark {
+  width: 2.4rem;
+  height: 2.4rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #cc5500, #f18f01);
+  color: #fff;
+  border-radius: 50%;
+  font-size: 1.1rem;
+  box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.1);
+}
+nav ul {
+  display: flex;
+  gap: 1rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+nav a {
+  color: #0d2340;
+  text-decoration: none;
+  font-weight: 600;
+}
+nav a:hover,
+nav a:focus-visible {
+  color: #cc5500;
+}
+@media (max-width: 768px) {
+  .site-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  nav ul {
+    flex-wrap: wrap;
+  }
+}
+</style>

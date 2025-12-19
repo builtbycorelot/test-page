@@ -1,0 +1,13 @@
+{
+  "title": "The Hamilton",
+  "slug": "the-hamilton",
+  "sqft": 2785,
+  "beds": 5,
+  "baths": 3,
+  "summary": "Multi-generational two-story with a main-level suite and structural options built to CORELOT standards.",
+  "heroImage": "/images/plans/the-hamilton/hero.svg",
+  "gallery": [
+    "/images/plans/the-hamilton/01.svg"
+  ],
+  "tags": ["Main Level Suite", "Flexible Loft"]
+}

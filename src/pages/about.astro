@@ -1,0 +1,39 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+<BaseLayout
+  title="About CORELOT Homes"
+  description="CORELOT Homes is a Virginia on-your-lot builder combining WL Martin Homes plans with transparent construction guidance."
+  canonicalPath="/about"
+>
+  <header class="page-header">
+    <p class="pill">About</p>
+    <h1>Built for the way you live.</h1>
+    <p class="lede">CORELOT Homes was created by builders who believe the best customer experience happens when pricing, plans, and landwork stay in sync.</p>
+  </header>
+
+  <section class="columns">
+    <div>
+      <h2>Builder roots</h2>
+      <p>Our team has delivered hundreds of WL Martin-inspired homes across the Commonwealth. We keep a deep bench of local trade partners so craftsmanship stays consistent from subdivision lots to acreage builds.</p>
+    </div>
+    <div>
+      <h2>Process-first</h2>
+      <p>We publish our content as code, validate data before deploy, and pre-render every page. That discipline mirrors our field process: transparent schedules, documented scopes, and proactive site walks.</p>
+    </div>
+    <div>
+      <h2>Where we build</h2>
+      <p>From Stafford to Culpeper and into the DC metro, we meet you on your homesite, confirm feasibility, and align financing with the plan you love.</p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+.page-header { margin-bottom: 1.5rem; }
+.lede { color: #4b5563; }
+.columns {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+}
+</style>

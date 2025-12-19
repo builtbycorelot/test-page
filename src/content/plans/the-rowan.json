@@ -1,0 +1,13 @@
+{
+  "title": "The Rowan",
+  "slug": "the-rowan",
+  "sqft": 1980,
+  "beds": 3,
+  "baths": 2,
+  "summary": "Modern cottage footprint with generous porch space and an efficient WL Martin-inspired kitchen layout.",
+  "heroImage": "/images/plans/the-rowan/hero.svg",
+  "gallery": [
+    "/images/plans/the-rowan/01.svg"
+  ],
+  "tags": ["Cottage", "Porch Living"]
+}

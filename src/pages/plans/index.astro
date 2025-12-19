@@ -1,0 +1,48 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PlanCard from '../../components/PlanCard.astro';
+import { getCollection } from 'astro:content';
+
+const plans = (await getCollection('plans')).sort((a, b) => a.data.title.localeCompare(b.data.title));
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: 'Home Plans',
+  itemListElement: plans.map((plan, index) => ({
+    '@type': 'ListItem',
+    position: index + 1,
+    url: `/plans/${plan.slug}/`,
+    name: plan.data.title,
+  })),
+};
+---
+<BaseLayout
+  title="CORELOT Home Plans"
+  description="Browse CORELOT and WL Martin Homes plans with square footage, bed/bath counts, and gallery highlights."
+  canonicalPath="/plans/"
+  structuredData={structuredData}
+>
+  <header class="page-header">
+    <div>
+      <p class="pill">Plans library</p>
+      <h1>Every CORELOT and WL Martin plan, validated as code.</h1>
+      <p class="lede">Static pages generated from content collections so SEO metadata, image references, and slugs stay consistent.</p>
+    </div>
+  </header>
+
+  <div class="grid">
+    {plans.map((plan) => <PlanCard plan={plan} />)}
+  </div>
+</BaseLayout>
+
+<style>
+.page-header {
+  margin-bottom: 1.5rem;
+}
+.lede { color: #4b5563; }
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1rem;
+}
+</style>
