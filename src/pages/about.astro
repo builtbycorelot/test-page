@@ -9,31 +9,195 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   <header class="page-header">
     <p class="pill">About</p>
     <h1>Built for the way you live.</h1>
-    <p class="lede">CORELOT Homes was created by builders who believe the best customer experience happens when pricing, plans, and landwork stay in sync.</p>
+    <p class="lede">CORELOT Homes was created by builders who believe the best customer experience happens when pricing, plans, and landwork stay in sync. We're not just contractors—we're your partners in bringing your dream home to life.</p>
   </header>
 
-  <section class="columns">
-    <div>
-      <h2>Builder roots</h2>
-      <p>Our team has delivered hundreds of WL Martin-inspired homes across the Commonwealth. We keep a deep bench of local trade partners so craftsmanship stays consistent from subdivision lots to acreage builds.</p>
+  <section class="story">
+    <h2>Our Story</h2>
+    <p>Founded on the principle that homebuilding should be transparent, honest, and accessible, CORELOT Homes emerged from decades of combined construction experience across Virginia and the DC metro area. We saw too many homeowners struggle with unclear pricing, hidden costs, and misaligned expectations. We knew there was a better way.</p>
+    <p>Today, we specialize in on-your-lot construction using proven WL Martin Homes designs—floor plans known for their livability, efficiency, and timeless appeal. By focusing on what we do best and maintaining strong relationships with trusted trade partners, we deliver consistent quality whether you're building on a suburban lot or rural acreage.</p>
+  </section>
+
+  <section class="values">
+    <h2>What Drives Us</h2>
+    <div class="columns">
+      <div class="value-card">
+        <h3>🏗️ Builder Roots</h3>
+        <p>Our team has delivered hundreds of WL Martin-inspired homes across the Commonwealth. We maintain a deep bench of local trade partners, ensuring craftsmanship stays consistent from subdivision lots to acreage builds. Every project benefits from our established relationships with excavators, framers, electricians, plumbers, and finish carpenters who share our commitment to quality.</p>
+      </div>
+      <div class="value-card">
+        <h3>📋 Process-First Approach</h3>
+        <p>We publish our content as code, validate data before deploy, and pre-render every page. That discipline mirrors our field process: transparent schedules, documented scopes, and proactive site walks. You'll always know what phase we're in, what comes next, and what to expect. No surprises, no hand-waving—just clear communication from preconstruction through final walkthrough.</p>
+      </div>
+      <div class="value-card">
+        <h3>🤝 Honest Communication</h3>
+        <p>We educate rather than sell. Every conversation starts with understanding your needs, budget, and timeline. We'll tell you when a plan won't work for your lot, when a structural option adds cost without value, or when waiting a season might save you thousands on site prep. Your success is our success.</p>
+      </div>
     </div>
-    <div>
-      <h2>Process-first</h2>
-      <p>We publish our content as code, validate data before deploy, and pre-render every page. That discipline mirrors our field process: transparent schedules, documented scopes, and proactive site walks.</p>
+  </section>
+
+  <section class="service-area">
+    <h2>Where We Build</h2>
+    <p>From Stafford to Culpeper and throughout the DC metro area, we meet you on your homesite, confirm feasibility, and align financing with the plan you love. Our primary service area includes:</p>
+    <div class="area-grid">
+      <div>
+        <h3>Northern Virginia</h3>
+        <ul>
+          <li>Stafford County</li>
+          <li>Spotsylvania County</li>
+          <li>Fredericksburg</li>
+          <li>King George County</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Central Virginia</h3>
+        <ul>
+          <li>Culpeper County</li>
+          <li>Orange County</li>
+          <li>Madison County</li>
+          <li>Fauquier County</li>
+        </ul>
+      </div>
+      <div>
+        <h3>DC Metro Access</h3>
+        <ul>
+          <li>Prince William County</li>
+          <li>Loudoun County (select areas)</li>
+          <li>Fairfax County (rural areas)</li>
+          <li>Custom projects considered</li>
+        </ul>
+      </div>
     </div>
-    <div>
-      <h2>Where we build</h2>
-      <p>From Stafford to Culpeper and into the DC metro, we meet you on your homesite, confirm feasibility, and align financing with the plan you love.</p>
+    <p class="note">Have a homesite outside our typical service area? <a href="/contact">Contact us</a>—we evaluate every opportunity individually and can often accommodate custom projects or recommend trusted builders in your region.</p>
+  </section>
+
+  <section class="wl-martin">
+    <h2>Why WL Martin Homes Plans?</h2>
+    <p>We've built our business around WL Martin Homes floor plans for one simple reason: they work. These designs have been refined over decades of real-world construction, with thoughtful details that translate into livable, efficient homes.</p>
+    <div class="wl-benefits">
+      <div>
+        <h4>Proven Track Record</h4>
+        <p>WL Martin plans have been built thousands of times across the Mid-Atlantic, meaning construction details are well-documented and trade partners know them inside out.</p>
+      </div>
+      <div>
+        <h4>Structural Flexibility</h4>
+        <p>Most plans offer multiple structural options—extra bedrooms, expanded garages, bonus rooms, covered porches—so you can customize within a proven framework.</p>
+      </div>
+      <div>
+        <h4>Cost Predictability</h4>
+        <p>Because we build these plans regularly, we can provide accurate budget ranges early in the process. No wild estimates or placeholder numbers—real pricing based on real experience.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="commitment">
+    <h2>Our Commitment to You</h2>
+    <p>When you build with CORELOT Homes, you're partnering with a team that values integrity over volume. We limit the number of projects we take on each year to ensure every client receives the attention they deserve. From your first call through final walkthrough, you'll work directly with experienced builders who stand behind their work.</p>
+    <div class="cta-box">
+      <h3>Ready to learn more?</h3>
+      <p>Schedule a consultation to discuss your homesite, explore plan options, and understand the full build process.</p>
+      <a class="btn primary" href="/contact">Get in touch</a>
     </div>
   </section>
 </BaseLayout>
 
 <style>
-.page-header { margin-bottom: 1.5rem; }
-.lede { color: #4b5563; }
+.page-header { margin-bottom: 2rem; }
+.lede { color: #4b5563; font-size: 1.1rem; line-height: 1.6; }
+.story, .values, .service-area, .wl-martin, .commitment {
+  margin-bottom: 3rem;
+}
+.story p, .service-area > p {
+  color: #374151;
+  line-height: 1.7;
+  margin-bottom: 1rem;
+}
 .columns {
   display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+.value-card {
+  background: #f8f9fb;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+.value-card h3 {
+  margin-top: 0;
+  color: #0d2340;
+}
+.area-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+  margin: 1.5rem 0;
+}
+.area-grid h3 {
+  color: #cc5500;
+  margin-bottom: 0.75rem;
+}
+.area-grid ul {
+  padding-left: 1.25rem;
+  margin: 0;
+}
+.area-grid li {
+  margin-bottom: 0.35rem;
+  color: #374151;
+}
+.note {
+  background: #fef3c7;
+  border-left: 4px solid #f59e0b;
+  padding: 1rem;
+  margin-top: 1.5rem;
+  border-radius: 6px;
+  color: #92400e;
+}
+.wl-benefits {
+  display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 1rem;
+  gap: 1.25rem;
+  margin-top: 1.5rem;
+}
+.wl-benefits h4 {
+  color: #cc5500;
+  margin-bottom: 0.5rem;
+}
+.wl-benefits p {
+  color: #374151;
+  line-height: 1.6;
+}
+.cta-box {
+  background: linear-gradient(135deg, #0d2340, #16325b);
+  color: #fff;
+  padding: 2rem;
+  border-radius: 16px;
+  text-align: center;
+  margin-top: 2rem;
+}
+.cta-box h3 {
+  color: #fff;
+  margin-top: 0;
+}
+.cta-box p {
+  color: #cbd5e1;
+  margin-bottom: 1.5rem;
+}
+.btn {
+  display: inline-flex;
+  padding: 0.85rem 1.5rem;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 700;
+  border: 2px solid transparent;
+  transition: all 0.2s;
+}
+.btn.primary {
+  background: #cc5500;
+  color: #fff;
+}
+.btn.primary:hover {
+  background: #b34c00;
 }
 </style>
