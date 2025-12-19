@@ -1,0 +1,33 @@
+{
+  "title": "WL Martin Plan 24460",
+  "slug": "wl-24460",
+  "wlPlanNumber": "24460",
+  "sqft": 3200,
+  "beds": 6,
+  "baths": 4,
+  "stories": 2,
+  "category": "Duplex",
+  "summary": "Side-by-side duplex with mirror-image units, each offering 3 bedrooms and modern amenities.",
+  "description": "Plan 24460 provides investment-ready duplex living with two complete 1,600 sqft units under one roof. Each side features its own entrance, garage, and private outdoor space while sharing a common wall for construction efficiency. Perfect for multi-generational living, rental income, or live-in owner scenarios. The mirror-image layout simplifies construction and maximizes cost-effectiveness.",
+  "features": [
+    "Side-by-side duplex configuration",
+    "Two 1,600 sqft units",
+    "3 bedrooms per unit",
+    "2 full baths per unit",
+    "Separate entrances and garages",
+    "Open concept living in each unit",
+    "Private rear patios",
+    "Upstairs bedrooms",
+    "Individual laundry hookups",
+    "Cost-effective construction"
+  ],
+  "heroImage": "/images/plans/wl-24460/hero.svg",
+  "gallery": [
+    "/images/plans/wl-24460/hero.svg",
+    "/images/plans/wl-24460/01.svg",
+    "/images/plans/wl-24460/02.svg"
+  ],
+  "tags": ["Duplex", "Investment Property", "Multi-Family", "Two-Story"],
+  "wlMartinUrl": "https://wlmartinhomes.com/house-plan-details?plan_id=24460",
+  "manufacturer": "WL Martin Homes"
+}

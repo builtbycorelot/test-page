@@ -1,0 +1,33 @@
+{
+  "title": "WL Martin Plan 24029",
+  "slug": "wl-24029",
+  "wlPlanNumber": "24029",
+  "sqft": 2140,
+  "beds": 4,
+  "baths": 2.5,
+  "stories": 2,
+  "category": "Builder Spec",
+  "summary": "Classic builder spec with four bedrooms, functional layout, and proven market appeal.",
+  "description": "Plan 24029 represents WL Martin's builder-tested approach to residential design. This two-story plan provides four bedrooms and 2.5 baths in a layout that's been refined through countless builds. The open main level supports modern family life while upstairs bedrooms offer quiet private spaces. Construction-friendly details ensure predictable timelines and budgets.",
+  "features": [
+    "Four bedroom layout",
+    "2.5 bathrooms",
+    "Open concept main floor",
+    "Kitchen with island",
+    "Dining area with porch access",
+    "Owner's suite upstairs",
+    "Three secondary bedrooms",
+    "Upstairs laundry",
+    "Two-car garage",
+    "Builder-proven plan"
+  ],
+  "heroImage": "/images/plans/wl-24029/hero.svg",
+  "gallery": [
+    "/images/plans/wl-24029/hero.svg",
+    "/images/plans/wl-24029/01.svg",
+    "/images/plans/wl-24029/02.svg"
+  ],
+  "tags": ["Builder Spec", "Four Bedrooms", "Classic", "Proven"],
+  "wlMartinUrl": "https://wlmartinhomes.com/house-plan-details?plan_id=24029",
+  "manufacturer": "WL Martin Homes"
+}

@@ -4,10 +4,24 @@
   "sqft": 1980,
   "beds": 3,
   "baths": 2,
+  "stories": 1,
+  "category": "Ranch",
   "summary": "Modern cottage footprint with generous porch space and an efficient WL Martin-inspired kitchen layout.",
+  "description": "The Rowan brings single-level living to life with inviting front and rear porches that expand your living space outdoors. This WL Martin-inspired cottage design emphasizes efficient use of space with minimal hallways and maximum openness, perfect for downsizing or those seeking main-level convenience.",
+  "features": [
+    "Single-story ranch design",
+    "Expansive front porch",
+    "Covered rear porch",
+    "Open kitchen and dining",
+    "Split bedroom layout",
+    "Owner's suite with walk-in closet",
+    "Efficient galley kitchen",
+    "Optional screened porch"
+  ],
   "heroImage": "/images/plans/the-rowan/hero.svg",
   "gallery": [
     "/images/plans/the-rowan/01.svg"
   ],
-  "tags": ["Cottage", "Porch Living"]
+  "tags": ["Cottage", "Porch Living", "Ranch", "Single Story"],
+  "manufacturer": "WL Martin Homes"
 }

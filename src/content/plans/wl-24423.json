@@ -1,0 +1,33 @@
+{
+  "title": "WL Martin Plan 24423",
+  "slug": "wl-24423",
+  "wlPlanNumber": "24423",
+  "sqft": 1450,
+  "beds": 2,
+  "baths": 2,
+  "stories": 1,
+  "category": "Cabin",
+  "summary": "Rustic cabin design with covered porches, open living, and mountain retreat charm.",
+  "description": "Plan 24423 brings cabin living to life with a thoughtful 1,450 sqft layout perfect for vacation retreats or full-time mountain living. The single-story design features vaulted ceilings, expansive windows, and generous porch space to connect with nature. Two bedrooms and two full baths provide comfortable accommodations while the open living area serves as the heart of the home.",
+  "features": [
+    "Rustic cabin styling",
+    "Vaulted great room ceiling",
+    "Expansive front porch",
+    "Covered rear deck",
+    "Two bedrooms with closets",
+    "Two full bathrooms",
+    "Open kitchen and living",
+    "Large windows for views",
+    "Optional stone fireplace",
+    "Mountain retreat ready"
+  ],
+  "heroImage": "/images/plans/wl-24423/hero.svg",
+  "gallery": [
+    "/images/plans/wl-24423/hero.svg",
+    "/images/plans/wl-24423/01.svg",
+    "/images/plans/wl-24423/02.svg"
+  ],
+  "tags": ["Cabin", "Vacation Home", "Single Story", "Porches"],
+  "wlMartinUrl": "https://wlmartinhomes.com/house-plan-details?plan_id=24423",
+  "manufacturer": "WL Martin Homes"
+}

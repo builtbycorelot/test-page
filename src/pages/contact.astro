@@ -3,43 +3,414 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 <BaseLayout
   title="Contact CORELOT Homes"
-  description="Schedule a consultation for CORELOT and WL Martin Homes plans, land packages, and financing guidance."
+  description="Schedule a consultation for on-your-lot construction, plan selection, and financing guidance in Virginia and DC metro area."
   canonicalPath="/contact"
 >
   <header class="page-header">
     <p class="pill">Contact</p>
-    <h1>Talk with a builder.</h1>
-    <p class="lede">Share your homesite, preferred WL Martin plan, and target timeline. We respond within one business day.</p>
+    <h1>Let's talk about your project.</h1>
+    <p class="lede">Whether you own land or are still looking, we'll help you understand the on-your-lot build process and determine if CORELOT is the right fit for your project.</p>
   </header>
 
-  <section class="contact-grid">
-    <div>
-      <h2>Start with a call</h2>
-      <p>📞 <a href="tel:15407857500">540.785.7500</a></p>
-      <p>📧 <a href="mailto:Sales@corelot.net">Sales@corelot.net</a></p>
+  <div class="contact-layout">
+    <section class="form-section">
+      <h2>Send us a message</h2>
+      <p class="form-intro">Share details about your homesite and project goals. We'll respond within one business day.</p>
+
+      <!-- HubSpot Form Container -->
+      <div id="hubspot-form-container"></div>
+    </section>
+
+    <aside class="contact-info">
+      <div class="info-card">
+        <h3>📞 Call us directly</h3>
+        <p class="contact-detail"><a href="tel:15407857500">540.785.7500</a></p>
+        <p class="contact-note">Available Monday–Friday, 9am–5pm EST</p>
+      </div>
+
+      <div class="info-card">
+        <h3>📧 Email</h3>
+        <p class="contact-detail"><a href="mailto:Sales@corelot.net">Sales@corelot.net</a></p>
+        <p class="contact-note">We respond within one business day</p>
+      </div>
+
+      <div class="info-card">
+        <h3>📍 Service Area</h3>
+        <p class="contact-detail">Northern & Central Virginia</p>
+        <p class="contact-note">Stafford, Spotsylvania, Culpeper, Fredericksburg, and DC metro areas</p>
+        <p><a href="/about#service-area">View full service area →</a></p>
+      </div>
+
+      <div class="info-card highlight-card">
+        <h3>What to prepare</h3>
+        <ul class="prep-list">
+          <li>Your land address or parcel ID (if you own land)</li>
+          <li>Lot size and general terrain description</li>
+          <li>Preferred plan or square footage range</li>
+          <li>Ideal budget and timeline</li>
+          <li>Any specific questions or concerns</li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+
+  <section class="next-steps">
+    <h2>What happens next?</h2>
+    <div class="steps-grid">
+      <div class="step">
+        <div class="step-icon">1</div>
+        <h3>We review your inquiry</h3>
+        <p>Our team evaluates your project details and determines if it aligns with our service area and capabilities.</p>
+      </div>
+      <div class="step">
+        <div class="step-icon">2</div>
+        <h3>Initial consultation call</h3>
+        <p>We schedule a phone call to discuss your lot conditions, plan preferences, and answer preliminary questions.</p>
+      </div>
+      <div class="step">
+        <div class="step-icon">3</div>
+        <h3>Design retainer proposal</h3>
+        <p>If it's a good fit, we provide a design retainer proposal to begin the feasibility assessment and budgeting process.</p>
+      </div>
     </div>
-    <div>
-      <h2>What to include</h2>
-      <ul>
-        <li>Your land address or parcel ID</li>
-        <li>Preferred plan and structural options</li>
-        <li>Ideal budget and timeline</li>
-      </ul>
+  </section>
+
+  <section class="faq-preview">
+    <h2>Common questions</h2>
+    <div class="faq-grid">
+      <div class="faq-item">
+        <h4>Do I need to own land before contacting you?</h4>
+        <p>No. We can help you evaluate potential homesites before purchase or work with land you already own.</p>
+      </div>
+      <div class="faq-item">
+        <h4>What if I'm not sure which plan I want?</h4>
+        <p>That's fine. We'll discuss your needs and help you explore plans that fit your lifestyle and budget during the design retainer phase.</p>
+      </div>
+      <div class="faq-item">
+        <h4>How far in advance should I contact you?</h4>
+        <p>Ideally 6-12 months before you want to break ground, but we're happy to talk earlier if you're in the planning stages.</p>
+      </div>
+      <div class="faq-item">
+        <h4>Do you charge for the initial consultation?</h4>
+        <p>No. The initial consultation call is complimentary. The design retainer comes later if we move forward together.</p>
+      </div>
     </div>
-    <div>
-      <h2>Visit us</h2>
-      <p>Virginia &amp; DC Metro<br />By appointment</p>
-      <p><a href="/land">See land packages</a></p>
-    </div>
+    <p class="faq-link"><a href="/faq">View all frequently asked questions →</a></p>
   </section>
 </BaseLayout>
 
 <style>
-.page-header { margin-bottom: 1.5rem; }
-.lede { color: #4b5563; }
-.contact-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1rem;
+.page-header {
+  margin-bottom: 2.5rem;
+  max-width: 70ch;
 }
+.lede {
+  color: #4b5563;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+.contact-layout {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 3rem;
+  margin-bottom: 4rem;
+}
+
+@media (max-width: 1024px) {
+  .contact-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+.form-section {
+  background: #fff;
+}
+.form-section h2 {
+  color: #0d2340;
+  margin-bottom: 0.5rem;
+}
+.form-intro {
+  color: #6b7280;
+  margin-bottom: 2rem;
+  font-size: 0.95rem;
+}
+
+#hubspot-form-container {
+  margin-top: 1.5rem;
+}
+
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.info-card {
+  background: #f8f9fb;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+.info-card h3 {
+  color: #0d2340;
+  margin-top: 0;
+  margin-bottom: 0.75rem;
+  font-size: 1.05rem;
+}
+.contact-detail {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+.contact-detail a {
+  color: #cc5500;
+  text-decoration: none;
+}
+.contact-detail a:hover {
+  text-decoration: underline;
+}
+.contact-note {
+  color: #6b7280;
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.highlight-card {
+  background: linear-gradient(135deg, #0d2340, #16325b);
+  color: #fff;
+  border-color: #0d2340;
+}
+.highlight-card h3 {
+  color: #fff;
+}
+.prep-list {
+  padding-left: 1.25rem;
+  margin: 0.75rem 0 0;
+}
+.prep-list li {
+  margin-bottom: 0.5rem;
+  color: #cbd5e1;
+  font-size: 0.95rem;
+}
+
+.next-steps {
+  background: #f8f9fb;
+  padding: 2.5rem;
+  border-radius: 16px;
+  margin-bottom: 3rem;
+}
+.next-steps h2 {
+  color: #0d2340;
+  margin-top: 0;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 2rem;
+}
+.step {
+  text-align: center;
+}
+.step-icon {
+  width: 3.5rem;
+  height: 3.5rem;
+  background: linear-gradient(135deg, #cc5500, #f18f01);
+  color: #fff;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+.step h3 {
+  color: #0d2340;
+  margin-bottom: 0.5rem;
+}
+.step p {
+  color: #4b5563;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.faq-preview {
+  margin-bottom: 2rem;
+}
+.faq-preview h2 {
+  color: #0d2340;
+  margin-bottom: 1.5rem;
+}
+.faq-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+.faq-item {
+  background: #f8f9fb;
+  border-left: 4px solid #cc5500;
+  padding: 1.25rem;
+  border-radius: 8px;
+}
+.faq-item h4 {
+  color: #0d2340;
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}
+.faq-item p {
+  color: #374151;
+  font-size: 0.95rem;
+  margin: 0;
+  line-height: 1.6;
+}
+.faq-link {
+  text-align: center;
+  margin-top: 1.5rem;
+}
+.faq-link a {
+  color: #cc5500;
+  font-weight: 600;
+  text-decoration: none;
+}
+.faq-link a:hover {
+  text-decoration: underline;
+}
+</style>
+
+<script>
+  // HubSpot Form Embed
+  // Replace with your actual Portal ID and Form ID from corelothomes.com
+  const HUBSPOT_PORTAL_ID = "YOUR_PORTAL_ID"; // TODO: Get from corelothomes.com
+  const HUBSPOT_FORM_ID = "YOUR_FORM_ID";     // TODO: Get from corelothomes.com
+
+  // Load HubSpot forms script
+  const script = document.createElement('script');
+  script.src = '//js.hsforms.net/forms/embed/v2.js';
+  script.charset = 'utf-8';
+  script.type = 'text/javascript';
+
+  script.onload = () => {
+    if (window.hbspt) {
+      window.hbspt.forms.create({
+        region: "na1",
+        portalId: HUBSPOT_PORTAL_ID,
+        formId: HUBSPOT_FORM_ID,
+        target: "#hubspot-form-container",
+        css: "",
+        cssClass: "hubspot-form",
+        submitButtonClass: "hs-submit-button",
+        onFormReady: function($form) {
+          // Custom styling after form loads
+          console.log('HubSpot form loaded');
+        },
+        onFormSubmit: function($form) {
+          console.log('Form submitted');
+        }
+      });
+    }
+  };
+
+  document.head.appendChild(script);
+</script>
+
+<!-- HubSpot Form Styling -->
+<style is:global>
+  /* Style the HubSpot form to match CORELOT branding */
+  .hubspot-form .hs-form-field {
+    margin-bottom: 1.25rem;
+  }
+
+  .hubspot-form label {
+    display: block;
+    color: #0d2340;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+  }
+
+  .hubspot-form input[type="text"],
+  .hubspot-form input[type="email"],
+  .hubspot-form input[type="tel"],
+  .hubspot-form textarea,
+  .hubspot-form select {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 1rem;
+    color: #0d2340;
+    transition: border-color 0.2s;
+  }
+
+  .hubspot-form input:focus,
+  .hubspot-form textarea:focus,
+  .hubspot-form select:focus {
+    outline: none;
+    border-color: #cc5500;
+    box-shadow: 0 0 0 3px rgba(204, 85, 0, 0.1);
+  }
+
+  .hubspot-form textarea {
+    min-height: 120px;
+    resize: vertical;
+  }
+
+  .hubspot-form .hs-error-msgs {
+    list-style: none;
+    padding: 0;
+    margin: 0.5rem 0 0;
+  }
+
+  .hubspot-form .hs-error-msg {
+    color: #dc2626;
+    font-size: 0.875rem;
+  }
+
+  .hubspot-form .hs-submit {
+    margin-top: 1.5rem;
+  }
+
+  .hubspot-form .hs-submit-button,
+  .hubspot-form input[type="submit"] {
+    background: #cc5500;
+    color: #fff;
+    padding: 0.85rem 2rem;
+    border: none;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: inherit;
+  }
+
+  .hubspot-form .hs-submit-button:hover,
+  .hubspot-form input[type="submit"]:hover {
+    background: #b34c00;
+    transform: translateY(-2px);
+  }
+
+  .hubspot-form .hs-submit-button:active,
+  .hubspot-form input[type="submit"]:active {
+    transform: translateY(0);
+  }
+
+  .hubspot-form .hs-form-required {
+    color: #cc5500;
+  }
+
+  .hubspot-form .submitted-message {
+    background: #d1fae5;
+    border-left: 4px solid #10b981;
+    padding: 1.5rem;
+    border-radius: 8px;
+    color: #065f46;
+    text-align: center;
+  }
 </style>

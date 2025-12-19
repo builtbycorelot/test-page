@@ -1,0 +1,33 @@
+{
+  "title": "WL Martin Plan 24379",
+  "slug": "wl-24379",
+  "wlPlanNumber": "24379",
+  "sqft": 2590,
+  "beds": 5,
+  "baths": 3,
+  "stories": 2,
+  "category": "Builder Spec",
+  "summary": "Spacious five-bedroom builder spec for growing families. Currently being updated with new renders by Joshua.",
+  "description": "Plan 24379 provides abundant space for larger families with five bedrooms and three full bathrooms across two levels. The generous main level includes formal and informal living areas while upstairs bedrooms offer private retreats. Currently receiving updated architectural renderings. This layout has proven popular with families prioritizing bedroom count and flexible space.",
+  "features": [
+    "Updated with new renderings",
+    "Five bedrooms",
+    "Three full bathrooms",
+    "Formal dining room",
+    "Open family room and kitchen",
+    "Owner's suite with spa bath",
+    "Upstairs bedrooms",
+    "Covered porch",
+    "Two-car garage",
+    "Growing family design"
+  ],
+  "heroImage": "/images/plans/wl-24379/hero.svg",
+  "gallery": [
+    "/images/plans/wl-24379/hero.svg",
+    "/images/plans/wl-24379/01.svg",
+    "/images/plans/wl-24379/02.svg"
+  ],
+  "tags": ["Builder Spec", "Updated Renderings", "Five Bedrooms", "Spacious"],
+  "wlMartinUrl": "https://wlmartinhomes.com/house-plan-details?plan_id=24379",
+  "manufacturer": "WL Martin Homes"
+}

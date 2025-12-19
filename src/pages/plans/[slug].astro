@@ -2,6 +2,13 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getEntry, getCollection } from 'astro:content';
 
+export async function getStaticPaths() {
+  const planEntries = await getCollection('plans');
+  return planEntries.map((entry) => ({
+    params: { slug: entry.id },
+  }));
+}
+
 const { slug } = Astro.params;
 const plan = await getEntry('plans', slug!);
 
@@ -13,10 +20,80 @@ const breadcrumbLd = {
   '@context': 'https://schema.org',
   '@type': 'BreadcrumbList',
   itemListElement: [
-    { '@type': 'ListItem', position: 1, name: 'Plans', item: '/plans/' },
-    { '@type': 'ListItem', position: 2, name: plan.data.title, item: `/plans/${plan.slug}/` },
+    { '@type': 'ListItem', position: 1, name: 'Plans', item: `${Astro.site}plans/` },
+    { '@type': 'ListItem', position: 2, name: plan.data.title, item: `${Astro.site}plans/${plan.slug}/` },
   ],
 };
+
+const productLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Product',
+  name: plan.data.title,
+  description: plan.data.summary,
+  brand: {
+    '@type': 'Brand',
+    name: plan.data.manufacturer,
+  },
+  category: plan.data.category,
+  image: plan.data.gallery.map((img) => `${Astro.site.origin}${img}`),
+  sku: plan.data.wlPlanNumber || plan.slug,
+  mpn: plan.data.wlPlanNumber,
+  offers: plan.data.priceRange ? {
+    '@type': 'AggregateOffer',
+    priceCurrency: plan.data.priceRange.currency,
+    lowPrice: plan.data.priceRange.min,
+    highPrice: plan.data.priceRange.max,
+    availability: 'https://schema.org/InStock',
+  } : undefined,
+  additionalProperty: [
+    {
+      '@type': 'PropertyValue',
+      name: 'Square Feet',
+      value: plan.data.sqft,
+      unitCode: 'SQF',
+    },
+    {
+      '@type': 'PropertyValue',
+      name: 'Bedrooms',
+      value: plan.data.beds,
+    },
+    {
+      '@type': 'PropertyValue',
+      name: 'Bathrooms',
+      value: plan.data.baths,
+    },
+    {
+      '@type': 'PropertyValue',
+      name: 'Stories',
+      value: plan.data.stories,
+    },
+  ],
+};
+
+const accommodationLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Accommodation',
+  name: plan.data.title,
+  description: plan.data.description || plan.data.summary,
+  floorSize: {
+    '@type': 'QuantitativeValue',
+    value: plan.data.sqft,
+    unitCode: 'SQF',
+  },
+  numberOfBedrooms: plan.data.beds,
+  numberOfBathroomsTotal: plan.data.baths,
+  numberOfRooms: plan.data.beds + 2,
+  amenityFeature: plan.data.features?.map((feature) => ({
+    '@type': 'LocationFeatureSpecification',
+    name: feature,
+  })) || [],
+  photo: plan.data.gallery.map((img) => ({
+    '@type': 'ImageObject',
+    url: `${Astro.site.origin}${img}`,
+  })),
+};
+
+const allStructuredData = [breadcrumbLd, productLd, accommodationLd];
 
 const related = (await getCollection('plans')).filter((item) => item.slug !== plan.slug).slice(0, 2);
 ---
@@ -24,33 +101,86 @@ const related = (await getCollection('plans')).filter((item) => item.slug !== pl
   title={`${plan.data.title} | CORELOT Plan`}
   description={plan.data.summary}
   canonicalPath={`/plans/${plan.slug}/`}
-  structuredData={breadcrumbLd}
+  structuredData={allStructuredData}
 >
   <header class="page-header">
-    <p class="pill">WL Martin Homes Plan</p>
+    <p class="pill">{plan.data.category} • {plan.data.manufacturer}</p>
     <h1>{plan.data.title}</h1>
-    <p class="stats">{plan.data.sqft} sqft • {plan.data.beds} beds • {plan.data.baths} baths</p>
+    <p class="stats">{plan.data.sqft} sqft • {plan.data.beds} beds • {plan.data.baths} baths • {plan.data.stories} {plan.data.stories === 1 ? 'story' : 'stories'}</p>
     <p class="lede">{plan.data.summary}</p>
+    {plan.data.wlPlanNumber && <p class="plan-number">WL Martin Plan #{plan.data.wlPlanNumber}</p>}
   </header>
 
-  <img class="hero" src={plan.data.heroImage} alt={`${plan.data.title} rendering`} />
-
-  <section class="details">
-    <div>
-      <h2>Highlights</h2>
-      <ul>
-        <li>Designed for daylight and sightlines inspired by WL Martin Homes.</li>
-        <li>Pre-wired for ENERGY STAR-friendly mechanical selections.</li>
-        <li>Ready for CORELOT land packages across Virginia and the DC metro.</li>
-      </ul>
+  <div class="carousel-container">
+    <div class="carousel">
+      {plan.data.gallery.map((image, index) => (
+        <img
+          class={index === 0 ? 'active' : ''}
+          src={image}
+          alt={`${plan.data.title} ${index === 0 ? 'hero rendering' : `view ${index + 1}`}`}
+          loading={index === 0 ? 'eager' : 'lazy'}
+        />
+      ))}
     </div>
-    <div>
-      <h2>Gallery</h2>
-      <div class="gallery">
-        {plan.data.gallery.map((image) => (
-          <img src={image} alt={`${plan.data.title} gallery`} loading="lazy" />
+    {plan.data.gallery.length > 1 && (
+      <div class="carousel-dots">
+        {plan.data.gallery.map((_, index) => (
+          <button class={`dot ${index === 0 ? 'active' : ''}`} aria-label={`View image ${index + 1}`}></button>
         ))}
       </div>
+    )}
+  </div>
+
+  {plan.data.description && (
+    <section class="description">
+      <p>{plan.data.description}</p>
+    </section>
+  )}
+
+  <section class="details">
+    {plan.data.features && plan.data.features.length > 0 && (
+      <div>
+        <h2>Features & Highlights</h2>
+        <ul class="features-list">
+          {plan.data.features.map((feature) => (
+            <li>{feature}</li>
+          ))}
+        </ul>
+      </div>
+    )}
+    <div>
+      <h2>Plan Details</h2>
+      <dl class="specs">
+        <div>
+          <dt>Square Feet</dt>
+          <dd>{plan.data.sqft.toLocaleString()} sqft</dd>
+        </div>
+        <div>
+          <dt>Bedrooms</dt>
+          <dd>{plan.data.beds}</dd>
+        </div>
+        <div>
+          <dt>Bathrooms</dt>
+          <dd>{plan.data.baths}</dd>
+        </div>
+        <div>
+          <dt>Stories</dt>
+          <dd>{plan.data.stories}</dd>
+        </div>
+        <div>
+          <dt>Category</dt>
+          <dd>{plan.data.category}</dd>
+        </div>
+        {plan.data.wlPlanNumber && (
+          <div>
+            <dt>Plan Number</dt>
+            <dd>#{plan.data.wlPlanNumber}</dd>
+          </div>
+        )}
+      </dl>
+      {plan.data.wlMartinUrl && (
+        <a href={plan.data.wlMartinUrl} target="_blank" rel="noopener" class="btn-link">View on WL Martin Homes →</a>
+      )}
     </div>
   </section>
 
@@ -65,32 +195,120 @@ const related = (await getCollection('plans')).filter((item) => item.slug !== pl
 </BaseLayout>
 
 <style>
-.page-header { margin-bottom: 1rem; }
-.stats { color: #4b5563; }
-.lede { color: #4b5563; max-width: 70ch; }
-.hero {
-  width: 100%;
-  max-height: 420px;
-  object-fit: cover;
-  border-radius: 12px;
-  border: 1px solid #ececec;
+.page-header { margin-bottom: 1.5rem; }
+.stats { color: #4b5563; font-weight: 600; }
+.lede { color: #4b5563; max-width: 70ch; line-height: 1.6; }
+.plan-number { color: #cc5500; font-weight: 700; margin-top: 0.5rem; }
+
+.carousel-container {
+  position: relative;
+  margin-bottom: 2rem;
 }
+.carousel {
+  position: relative;
+  width: 100%;
+  height: 500px;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid #ececec;
+  background: #f8f9fb;
+}
+.carousel img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+.carousel img.active {
+  opacity: 1;
+  position: relative;
+}
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid #cc5500;
+  background: transparent;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+.dot.active,
+.dot:hover {
+  background: #cc5500;
+}
+
+.description {
+  margin: 2rem 0;
+  padding: 1.5rem;
+  background: #f8f9fb;
+  border-left: 4px solid #cc5500;
+  border-radius: 8px;
+}
+.description p {
+  color: #374151;
+  line-height: 1.7;
+  margin: 0;
+}
+
 .details {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 1.5rem;
-  margin-top: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
 }
-.gallery {
+.features-list {
+  padding-left: 1.25rem;
+  margin: 1rem 0 0;
+}
+.features-list li {
+  margin-bottom: 0.5rem;
+  color: #374151;
+  line-height: 1.6;
+}
+.specs {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
   gap: 0.75rem;
+  margin: 1rem 0;
 }
-.gallery img {
-  width: 100%;
-  border-radius: 10px;
-  border: 1px solid #ececec;
+.specs div {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid #ececec;
 }
+.specs dt {
+  font-weight: 600;
+  color: #0d2340;
+}
+.specs dd {
+  margin: 0;
+  color: #4b5563;
+}
+.btn-link {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.75rem 1.25rem;
+  background: #cc5500;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 700;
+  transition: background 0.2s;
+}
+.btn-link:hover {
+  background: #b34c00;
+}
+
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -107,4 +325,28 @@ const related = (await getCollection('plans')).filter((item) => item.slug !== pl
   font-weight: 700;
 }
 .inline-card:hover { border-color: #cc5500; }
+
+@media (max-width: 768px) {
+  .carousel {
+    height: 300px;
+  }
+}
 </style>
+
+<script>
+const carousel = document.querySelector('.carousel');
+const dots = document.querySelectorAll('.dot');
+const images = document.querySelectorAll('.carousel img');
+
+let currentIndex = 0;
+
+dots.forEach((dot, index) => {
+  dot.addEventListener('click', () => {
+    images[currentIndex].classList.remove('active');
+    dots[currentIndex].classList.remove('active');
+    currentIndex = index;
+    images[currentIndex].classList.add('active');
+    dots[currentIndex].classList.add('active');
+  });
+});
+</script>

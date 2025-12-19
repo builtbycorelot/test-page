@@ -1,0 +1,33 @@
+{
+  "title": "WL Martin Plan 24377",
+  "slug": "wl-24377",
+  "wlPlanNumber": "24377",
+  "sqft": 2320,
+  "beds": 4,
+  "baths": 2.5,
+  "stories": 2,
+  "category": "Builder Spec",
+  "summary": "Updated builder spec with new renderings, modern styling, and flexible bonus space. Currently being updated with new renders by Joshua.",
+  "description": "Plan 24377 combines timeless layout with contemporary updates. This two-story design features four bedrooms, flexible bonus space, and an open main level perfect for modern family living. Currently receiving updated architectural renderings to showcase its full potential. The proven floor plan has been builder-tested across hundreds of projects.",
+  "features": [
+    "Updated with new renderings",
+    "Four bedrooms plus bonus",
+    "Open concept main level",
+    "Owner's suite with dual vanities",
+    "Flexible bonus room",
+    "Modern exterior styling options",
+    "Covered front porch",
+    "Two-car garage",
+    "Upstairs laundry",
+    "Builder-proven design"
+  ],
+  "heroImage": "/images/plans/wl-24377/hero.svg",
+  "gallery": [
+    "/images/plans/wl-24377/hero.svg",
+    "/images/plans/wl-24377/01.svg",
+    "/images/plans/wl-24377/02.svg"
+  ],
+  "tags": ["Builder Spec", "Updated Renderings", "Bonus Room", "Modern"],
+  "wlMartinUrl": "https://wlmartinhomes.com/house-plan-details?plan_id=24377",
+  "manufacturer": "WL Martin Homes"
+}

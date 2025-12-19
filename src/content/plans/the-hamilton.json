@@ -4,10 +4,24 @@
   "sqft": 2785,
   "beds": 5,
   "baths": 3,
+  "stories": 2,
+  "category": "Two-Story",
   "summary": "Multi-generational two-story with a main-level suite and structural options built to CORELOT standards.",
+  "description": "The Hamilton offers exceptional flexibility for multi-generational living with a main-level owner's suite, spacious secondary bedrooms upstairs, and a versatile loft space. This WL Martin-inspired design maximizes square footage efficiency while providing distinct zones for privacy and gathering.",
+  "features": [
+    "Main level owner's suite",
+    "Flexible upstairs loft",
+    "Open concept great room",
+    "Gourmet kitchen with island",
+    "Covered front and rear porches",
+    "Optional bonus room",
+    "Mud room entry",
+    "Walk-in pantry"
+  ],
   "heroImage": "/images/plans/the-hamilton/hero.svg",
   "gallery": [
     "/images/plans/the-hamilton/01.svg"
   ],
-  "tags": ["Main Level Suite", "Flexible Loft"]
+  "tags": ["Main Level Suite", "Flexible Loft", "Multi-Generational"],
+  "manufacturer": "WL Martin Homes"
 }

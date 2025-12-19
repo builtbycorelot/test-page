@@ -4,11 +4,25 @@
   "sqft": 2450,
   "beds": 4,
   "baths": 2.5,
+  "stories": 2,
+  "category": "Two-Story",
   "summary": "Open concept plan with flexible options inspired by WL Martin Homes and tailored for Northern Virginia living.",
+  "description": "The Meredith delivers modern open-concept living with thoughtful separation of spaces. The main level flows seamlessly from kitchen to dining to great room, while upstairs bedrooms provide private retreats. Built on WL Martin's proven design principles, this plan minimizes wasted hallway space and maximizes livability.",
+  "features": [
+    "Open concept main level",
+    "Large kitchen island with seating",
+    "Covered front porch",
+    "Owner's suite with dual vanities",
+    "Walk-in closets in all bedrooms",
+    "Upstairs laundry convenience",
+    "Optional covered rear porch",
+    "Two-car garage"
+  ],
   "heroImage": "/images/plans/the-meredith/hero.svg",
   "gallery": [
     "/images/plans/the-meredith/01.svg",
     "/images/plans/the-meredith/02.svg"
   ],
-  "tags": ["Popular", "WL Martin Homes"]
+  "tags": ["Popular", "Open Concept", "WL Martin Homes"],
+  "manufacturer": "WL Martin Homes"
 }

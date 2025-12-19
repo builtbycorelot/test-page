@@ -9,13 +9,25 @@ const plans = defineCollection({
   schema: z.object({
     title: z.string(),
     slug: slugRule,
+    wlPlanNumber: z.string().optional(),
     sqft: z.number().int().positive(),
     beds: z.number().positive(),
     baths: z.number().positive(),
+    stories: z.number().int().positive().default(1),
+    category: z.string(),
     summary: z.string(),
+    description: z.string().optional(),
+    features: z.array(z.string()).optional(),
     heroImage: z.string(),
     gallery: z.array(z.string()).nonempty(),
     tags: z.array(z.string()).optional(),
+    priceRange: z.object({
+      min: z.number().optional(),
+      max: z.number().optional(),
+      currency: z.string().default('USD'),
+    }).optional(),
+    wlMartinUrl: z.string().url().optional(),
+    manufacturer: z.string().default('WL Martin Homes'),
   }),
 });
 

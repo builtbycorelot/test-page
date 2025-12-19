@@ -1,0 +1,33 @@
+{
+  "title": "WL Martin Plan 24226",
+  "slug": "wl-24226",
+  "wlPlanNumber": "24226",
+  "sqft": 2025,
+  "beds": 3,
+  "baths": 2.5,
+  "stories": 2,
+  "category": "Builder Spec",
+  "summary": "Traditional two-story builder spec with classic proportions and straightforward construction.",
+  "description": "Plan 24226 offers time-tested two-story design with three bedrooms and bonus potential. The traditional layout separates living spaces on the main level from bedrooms upstairs while maintaining an open feel. Builder-friendly details and standard dimensions make this plan a reliable choice for spec construction and custom builds alike.",
+  "features": [
+    "Traditional two-story layout",
+    "Three bedrooms upstairs",
+    "2.5 bathrooms",
+    "Open main level",
+    "Formal dining option",
+    "Owner's suite with walk-in closet",
+    "Optional bonus room",
+    "Covered front porch",
+    "Two-car garage",
+    "Standard framing details"
+  ],
+  "heroImage": "/images/plans/wl-24226/hero.svg",
+  "gallery": [
+    "/images/plans/wl-24226/hero.svg",
+    "/images/plans/wl-24226/01.svg",
+    "/images/plans/wl-24226/02.svg"
+  ],
+  "tags": ["Builder Spec", "Traditional", "Two-Story", "Bonus Room"],
+  "wlMartinUrl": "https://wlmartinhomes.com/house-plan-details?plan_id=24226",
+  "manufacturer": "WL Martin Homes"
+}

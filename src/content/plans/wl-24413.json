@@ -1,0 +1,31 @@
+{
+  "title": "WL Martin Plan 24413",
+  "slug": "wl-24413",
+  "wlPlanNumber": "24413",
+  "sqft": 2650,
+  "beds": 4,
+  "baths": 3,
+  "stories": 2,
+  "category": "Farmhouse",
+  "summary": "National bestseller farmhouse plan with modern open layout and classic appeal. Built approximately 2,000 times across the Mid-Atlantic.",
+  "description": "Plan 24413 is WL Martin's most popular farmhouse design, proven through thousands of successful builds. This two-story layout combines traditional farmhouse aesthetics with contemporary open-concept living. Generous porches front and rear emphasize outdoor living while the efficient interior minimizes wasted space. The flexible floor plan accommodates growing families with optional bonus spaces and structural modifications.",
+  "features": [
+    "Proven national bestseller design",
+    "Expansive front porch",
+    "Open concept great room and kitchen",
+    "Main level owner's suite option",
+    "Four bedrooms with flex space",
+    "Covered rear porch",
+    "Two-car garage",
+    "Optional bonus room over garage",
+    "Mud room with built-in storage",
+    "Walk-in pantry"
+  ],
+  "heroImage": "/images/plans/wl-24413/hero.svg",
+  "gallery": [
+    "/images/plans/wl-24413/hero.svg"
+  ],
+  "tags": ["Farmhouse", "Bestseller", "Popular", "Open Concept", "Porch Living"],
+  "wlMartinUrl": "https://wlmartinhomes.com/house-plan-details?plan_id=24413",
+  "manufacturer": "WL Martin Homes"
+}
