@@ -21,7 +21,7 @@ const breadcrumbLd = {
   '@type': 'BreadcrumbList',
   itemListElement: [
     { '@type': 'ListItem', position: 1, name: 'Plans', item: `${Astro.site}plans/` },
-    { '@type': 'ListItem', position: 2, name: plan.data.title, item: `${Astro.site}plans/${plan.slug}/` },
+    { '@type': 'ListItem', position: 2, name: plan.data.title, item: `${Astro.site}plans/${slug}/` },
   ],
 };
 
@@ -36,7 +36,7 @@ const productLd = {
   },
   category: plan.data.category,
   image: plan.data.gallery.map((img) => `${Astro.site.origin}${img}`),
-  sku: plan.data.wlPlanNumber || plan.slug,
+  sku: plan.data.wlPlanNumber || slug,
   mpn: plan.data.wlPlanNumber,
   offers: plan.data.priceRange ? {
     '@type': 'AggregateOffer',
@@ -95,12 +95,12 @@ const accommodationLd = {
 
 const allStructuredData = [breadcrumbLd, productLd, accommodationLd];
 
-const related = (await getCollection('plans')).filter((item) => item.slug !== plan.slug).slice(0, 2);
+const related = (await getCollection('plans')).filter((item) => item.id !== slug).slice(0, 2);
 ---
 <BaseLayout
   title={`${plan.data.title} | CORELOT Plan`}
   description={plan.data.summary}
-  canonicalPath={`/plans/${plan.slug}/`}
+  canonicalPath={`/plans/${slug}/`}
   structuredData={allStructuredData}
 >
   <header class="page-header">
@@ -188,7 +188,7 @@ const related = (await getCollection('plans')).filter((item) => item.slug !== pl
     <section>
       <h2>More plans to explore</h2>
       <div class="grid">
-        {related.map((item) => <a class="inline-card" href={`/plans/${item.slug}/`}>{item.data.title}</a>)}
+        {related.map((item) => <a class="inline-card" href={`/plans/${item.id}/`}>{item.data.title}</a>)}
       </div>
     </section>
   )}

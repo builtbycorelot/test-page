@@ -1,11 +1,62 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import PlanCard from '../components/PlanCard.astro';
-import LandCard from '../components/LandCard.astro';
 import { getCollection } from 'astro:content';
 
 const plans = (await getCollection('plans')).sort((a, b) => b.data.sqft - a.data.sqft);
 const land = (await getCollection('land')).sort((a, b) => a.data.address.localeCompare(b.data.address));
+
+// Main site pages with hero images
+const sitePages = [
+  {
+    title: 'About CORELOT',
+    slug: '/about',
+    description: 'Company story, service area, and what sets us apart',
+    heroImage: '/images/brands/corelot.svg',
+    category: 'Company'
+  },
+  {
+    title: 'Build Process',
+    slug: '/process',
+    description: '8-phase timeline from consultation to final walkthrough',
+    heroImage: '/images/brands/corelot.svg',
+    category: 'Resources'
+  },
+  {
+    title: 'Financing Guide',
+    slug: '/financing',
+    description: 'Construction-perm loans and trusted lender partners',
+    heroImage: '/images/brands/corelot.svg',
+    category: 'Resources'
+  },
+  {
+    title: 'Frequently Asked Questions',
+    slug: '/faq',
+    description: '40+ Q&As about land, process, budget, and more',
+    heroImage: '/images/brands/corelot.svg',
+    category: 'Resources'
+  },
+  {
+    title: 'Contact Us',
+    slug: '/contact',
+    description: 'Schedule a consultation to discuss your project',
+    heroImage: '/images/brands/corelot.svg',
+    category: 'Company'
+  },
+  {
+    title: 'Floor Plans',
+    slug: '/plans',
+    description: `${plans.length} plans including CORELOT and WL Martin designs`,
+    heroImage: '/images/brands/corelot.svg',
+    category: 'Catalog'
+  },
+  {
+    title: 'Available Land',
+    slug: '/land',
+    description: `${land.length} homesites ready for construction`,
+    heroImage: '/images/brands/corelot.svg',
+    category: 'Catalog'
+  },
+];
 
 const assetPages = [
   { title: 'Brand capability matrix', href: '/assets/brand-capability-matrix.html' },
@@ -51,7 +102,7 @@ const structuredData = [
     itemListElement: plans.map((plan, index) => ({
       '@type': 'ListItem',
       position: index + 1,
-      url: `/plans/${plan.slug}/`,
+      url: `/plans/${plan.id}/`,
       name: plan.data.title,
     })),
   },
@@ -62,141 +113,78 @@ const structuredData = [
     itemListElement: land.map((lot, index) => ({
       '@type': 'ListItem',
       position: index + 1,
-      url: `/land/${lot.slug}/`,
+      url: `/land/${lot.id}/`,
       name: lot.data.address,
     })),
   },
 ];
 ---
 <BaseLayout
-  title="CORELOT Homes | Built for the way you live"
-  description="On-your-lot homes, WL Martin inspired plans, and move-in ready lots across Virginia and the DC metro area."
+  title="CORELOT Homes | Site Catalog"
+  description="Browse all pages, floor plans, and resources for CORELOT Homes—your on-your-lot builder in Virginia."
   canonicalPath="/"
   structuredData={structuredData}
 >
-  <section class="hero">
-    <div class="hero-copy">
-      <p class="pill">Built for the way you live</p>
-      <h1>Build your custom home on your land—with full transparency from day one.</h1>
-      <p class="lede">CORELOT Homes specializes in on-your-lot construction across Northern and Central Virginia. We guide you through every phase—from design retainer to final walkthrough—ensuring you understand costs, timelines, and site challenges before breaking ground.</p>
-      <div class="hero-actions">
-        <a class="btn primary" href="/contact">Schedule Consultation</a>
-        <a class="btn ghost" href="/process">See Our Process</a>
-      </div>
-    </div>
-    <div class="hero-panel">
-      <p class="eyebrow">Why CORELOT?</p>
-      <p>Unlike production builders, we start with your land and your vision. Our design retainer process ensures you have a complete, site-specific budget before committing to construction.</p>
-      <ul class="feature-list">
-        <li>Proven WL Martin Homes & custom plans</li>
-        <li>Transparent line-item budgeting</li>
-        <li>Site-specific cost assessment upfront</li>
-        <li>Construction-perm loan guidance</li>
-      </ul>
+  <header class="catalog-header">
+    <h1>CORELOT Homes Site Catalog</h1>
+    <p class="lede">Browse all pages, plans, and resources. Each page includes its slug (URL path) for easy reference.</p>
+  </header>
+
+  <section class="catalog-section">
+    <h2>Main Site Pages</h2>
+    <div class="catalog-grid">
+      {sitePages.map((page) => (
+        <a href={page.slug} class="catalog-card">
+          <div class="catalog-image">
+            <img src={page.heroImage} alt={page.title} />
+          </div>
+          <div class="catalog-content">
+            <p class="catalog-category">{page.category}</p>
+            <h3>{page.title}</h3>
+            <p class="catalog-description">{page.description}</p>
+            <p class="catalog-slug">{page.slug}</p>
+          </div>
+        </a>
+      ))}
     </div>
   </section>
 
-  <section class="value-props">
-    <h2>The CORELOT difference</h2>
-    <div class="props-grid">
-      <div class="prop-card">
-        <div class="prop-icon">📋</div>
-        <h3>Design Retainer First</h3>
-        <p>We assess your lot, select a plan, and develop a detailed budget <em>before</em> you commit to construction. No surprises.</p>
-      </div>
-      <div class="prop-card">
-        <div class="prop-icon">🏗️</div>
-        <h3>Complete Site Services</h3>
-        <p>From clearing and grading to septic, well, and utilities—we coordinate every aspect of site preparation.</p>
-      </div>
-      <div class="prop-card">
-        <div class="prop-icon">💰</div>
-        <h3>Lender Partnerships</h3>
-        <p>We work with trusted construction-perm lenders who understand on-your-lot financing and can guide you through the process.</p>
-      </div>
-      <div class="prop-card">
-        <div class="prop-icon">📍</div>
-        <h3>Local Expertise</h3>
-        <p>Decades of experience building in Stafford, Spotsylvania, Culpeper, Fredericksburg, and the DC metro area.</p>
-      </div>
+  <section class="catalog-section">
+    <h2>Floor Plans ({plans.length})</h2>
+    <div class="catalog-grid">
+      {plans.map((plan) => (
+        <a href={`/plans/${plan.id}/`} class="catalog-card">
+          <div class="catalog-image">
+            <img src={plan.data.heroImage} alt={plan.data.title} />
+          </div>
+          <div class="catalog-content">
+            <p class="catalog-category">{plan.data.category}</p>
+            <h3>{plan.data.title}</h3>
+            <p class="catalog-description">{plan.data.sqft} sqft • {plan.data.beds} beds • {plan.data.baths} baths</p>
+            <p class="catalog-slug">/plans/{plan.id}/</p>
+          </div>
+        </a>
+      ))}
     </div>
   </section>
 
-  <section class="how-it-works">
-    <h2>How it works</h2>
-    <p class="section-intro">Building on your lot requires careful planning. Here's our proven process:</p>
-    <div class="steps-grid">
-      <div class="step-card">
-        <div class="step-number">1</div>
-        <h3>Consultation</h3>
-        <p>We discuss your land, budget, and vision. No charge for this initial call.</p>
-      </div>
-      <div class="step-card">
-        <div class="step-number">2</div>
-        <h3>Design Retainer</h3>
-        <p>Site evaluation, plan selection, and detailed budgeting (4–8 weeks). Fee credited to construction.</p>
-      </div>
-      <div class="step-card">
-        <div class="step-number">3</div>
-        <h3>Permitting & Contract</h3>
-        <p>We finalize the contract, submit permits, and coordinate with your lender (6–12 weeks).</p>
-      </div>
-      <div class="step-card">
-        <div class="step-number">4</div>
-        <h3>Construction</h3>
-        <p>Site prep, foundation, framing, mechanicals, and finishes (7–10 months).</p>
-      </div>
+  <section class="catalog-section">
+    <h2>Available Land ({land.length})</h2>
+    <div class="catalog-grid">
+      {land.map((parcel) => (
+        <a href={`/land/${parcel.id}/`} class="catalog-card">
+          <div class="catalog-image">
+            <img src={parcel.data.heroImage} alt={parcel.data.address} />
+          </div>
+          <div class="catalog-content">
+            <p class="catalog-category">Homesite</p>
+            <h3>{parcel.data.address}</h3>
+            <p class="catalog-description">{parcel.data.status}</p>
+            <p class="catalog-slug">/land/{parcel.id}/</p>
+          </div>
+        </a>
+      ))}
     </div>
-    <p class="cta-link"><a href="/process">See the complete build timeline →</a></p>
-  </section>
-
-  <section>
-    <div class="section-heading">
-      <h2>Featured plans</h2>
-      <a href="/plans">See all plans</a>
-    </div>
-    <div class="grid">
-      {plans.map((plan) => <PlanCard plan={plan} />)}
-    </div>
-  </section>
-
-  <section>
-    <div class="section-heading">
-      <h2>Available land</h2>
-      <a href="/land">See all land</a>
-    </div>
-    <div class="grid">
-      {land.map((parcel) => <LandCard parcel={parcel} />)}
-    </div>
-  </section>
-
-  <section class="info-panels">
-    <article>
-      <h3>Our Process</h3>
-      <p>Step-by-step guide from consultation to final walkthrough. Understand what to expect at each phase.</p>
-      <a href="/process">View the build process →</a>
-    </article>
-    <article>
-      <h3>Financing Guidance</h3>
-      <p>Construction-perm loan overview, budget components, and trusted lender partners.</p>
-      <a href="/financing">Learn about financing →</a>
-    </article>
-    <article>
-      <h3>Frequently Asked Questions</h3>
-      <p>Answers to common questions about land requirements, timelines, costs, and more.</p>
-      <a href="/faq">Browse FAQs →</a>
-    </article>
-    <article>
-      <h3>About CORELOT</h3>
-      <p>Our story, service area, WL Martin partnership, and what sets us apart.</p>
-      <a href="/about">Learn about us →</a>
-    </article>
-  </section>
-
-  <section class="cta-banner">
-    <h2>Ready to build on your land?</h2>
-    <p>Schedule a complimentary consultation to discuss your lot, budget, and timeline. We'll provide honest guidance on feasibility and next steps.</p>
-    <a class="btn primary" href="/contact">Get Started Today</a>
   </section>
 
   <section id="library">
@@ -252,236 +240,115 @@ const structuredData = [
 </BaseLayout>
 
 <style>
-.hero {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 1.5rem;
+.catalog-header {
+  text-align: center;
   margin-bottom: 3rem;
-  align-items: center;
+  padding-bottom: 2rem;
+  border-bottom: 2px solid #e5e7eb;
 }
-.hero-copy h1 {
-  margin-top: 0.35rem;
-  font-size: clamp(1.8rem, 3vw, 2.4rem);
-  line-height: 1.2;
-}
-.lede {
-  font-size: 1.05rem;
-  color: #4b5563;
-  line-height: 1.6;
-}
-.hero-panel {
-  background: linear-gradient(135deg, #0d2340, #16325b);
-  color: #fff;
-  padding: 1.5rem;
-  border-radius: 16px;
-  box-shadow: 0 1rem 2rem rgba(0,0,0,0.1);
-}
-.hero-panel .feature-list {
-  margin: 1rem 0 0;
-  padding-left: 1.25rem;
-}
-.hero-panel li { margin-bottom: 0.35rem; color: #cbd5e1; }
-.hero-actions { display: flex; gap: 0.75rem; margin-top: 1rem; flex-wrap: wrap; }
-.btn {
-  display: inline-flex;
-  padding: 0.75rem 1.5rem;
-  border-radius: 10px;
-  text-decoration: none;
-  font-weight: 700;
-  border: 2px solid transparent;
-  transition: all 0.2s;
-}
-.btn.primary {
-  background: var(--accent);
-  color: #fff;
-}
-.btn.primary:hover {
-  background: #b34c00;
-  transform: translateY(-2px);
-}
-.btn.ghost {
-  border-color: var(--accent);
-  color: var(--accent);
-}
-.btn.ghost:hover {
-  background: rgba(204, 85, 0, 0.1);
-}
-
-.value-props {
-  background: #f8f9fb;
-  padding: 2.5rem;
-  border-radius: 16px;
-  margin-bottom: 3rem;
-}
-.value-props h2 {
+.catalog-header h1 {
   color: #0d2340;
-  text-align: center;
-  margin-top: 0;
-  margin-bottom: 2rem;
-}
-.props-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 1.5rem;
-}
-.prop-card {
-  background: #fff;
-  border: 1px solid #e5e7eb;
-  border-radius: 12px;
-  padding: 1.5rem;
-  text-align: center;
-}
-.prop-icon {
-  font-size: 2.5rem;
   margin-bottom: 0.75rem;
 }
-.prop-card h3 {
-  color: #0d2340;
-  margin-top: 0;
-  margin-bottom: 0.5rem;
+.catalog-header .lede {
   font-size: 1.1rem;
-}
-.prop-card p {
   color: #4b5563;
-  font-size: 0.95rem;
   line-height: 1.6;
-  margin: 0;
+  max-width: 70ch;
+  margin: 0 auto;
 }
 
-.how-it-works {
-  margin-bottom: 3rem;
+.catalog-section {
+  margin-bottom: 4rem;
 }
-.how-it-works h2 {
+.catalog-section h2 {
   color: #0d2340;
-  text-align: center;
-  margin-bottom: 0.5rem;
-}
-.section-intro {
-  text-align: center;
-  color: #6b7280;
-  font-size: 1.05rem;
-  margin-bottom: 2rem;
-}
-.steps-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1.5rem;
+  font-size: 1.8rem;
   margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 3px solid #cc5500;
 }
-.step-card {
-  background: #fff;
+
+.catalog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.catalog-card {
+  display: flex;
+  flex-direction: column;
   border: 1px solid #e5e7eb;
   border-radius: 12px;
-  padding: 1.5rem;
-  text-align: center;
+  overflow: hidden;
+  background: #fff;
+  transition: all 0.3s;
+  text-decoration: none;
+  color: inherit;
 }
-.step-number {
-  width: 3rem;
-  height: 3rem;
-  background: linear-gradient(135deg, #cc5500, #f18f01);
-  color: #fff;
-  border-radius: 50%;
-  display: inline-flex;
+.catalog-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+  border-color: #cc5500;
+}
+
+.catalog-image {
+  width: 100%;
+  height: 200px;
+  background: #f8f9fb;
+  display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
+}
+.catalog-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.catalog-content {
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex: 1;
+}
+
+.catalog-category {
+  color: #cc5500;
+  font-size: 0.75rem;
   font-weight: 700;
-  font-size: 1.3rem;
-  margin-bottom: 1rem;
-}
-.step-card h3 {
-  color: #0d2340;
-  margin-top: 0;
-  margin-bottom: 0.5rem;
-  font-size: 1.1rem;
-}
-.step-card p {
-  color: #4b5563;
-  font-size: 0.95rem;
-  line-height: 1.6;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
   margin: 0;
 }
-.cta-link {
-  text-align: center;
-  margin-top: 1.5rem;
-}
-.cta-link a {
-  color: #cc5500;
-  font-weight: 700;
-  text-decoration: none;
-}
-.cta-link a:hover {
-  text-decoration: underline;
-}
 
-.section-heading {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 1rem;
-  margin-bottom: 1rem;
-}
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1rem;
-}
-.info-panels {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 1.25rem;
-  margin-top: 3rem;
-  margin-bottom: 3rem;
-}
-.info-panels article {
-  border: 1px solid #e5e7eb;
-  border-left: 4px solid #cc5500;
-  border-radius: 12px;
-  padding: 1.5rem;
-  background: #f8f9fb;
-  transition: box-shadow 0.2s;
-}
-.info-panels article:hover {
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-}
-.info-panels h3 {
+.catalog-content h3 {
   color: #0d2340;
-  margin-top: 0;
-  margin-bottom: 0.5rem;
-}
-.info-panels p {
-  color: #4b5563;
-  font-size: 0.95rem;
-  line-height: 1.6;
-  margin-bottom: 0.75rem;
-}
-.info-panels a {
-  color: #cc5500;
-  font-weight: 600;
-  text-decoration: none;
-}
-.info-panels a:hover {
-  text-decoration: underline;
+  margin: 0;
+  font-size: 1.1rem;
+  line-height: 1.3;
 }
 
-.cta-banner {
-  background: linear-gradient(135deg, #0d2340, #16325b);
-  color: #fff;
-  padding: 2.5rem;
-  border-radius: 16px;
-  text-align: center;
-  margin-bottom: 3rem;
+.catalog-description {
+  color: #6b7280;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin: 0;
+  flex: 1;
 }
-.cta-banner h2 {
-  color: #fff;
-  margin-top: 0;
-  margin-bottom: 0.75rem;
-}
-.cta-banner p {
-  color: #cbd5e1;
-  font-size: 1.05rem;
-  line-height: 1.6;
-  max-width: 60ch;
-  margin: 0 auto 1.5rem;
+
+.catalog-slug {
+  color: #0d2340;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.85rem;
+  background: #f8f9fb;
+  padding: 0.5rem;
+  border-radius: 6px;
+  margin: 0;
+  font-weight: 600;
+  border: 1px solid #e5e7eb;
 }
 
 .link-grid {
@@ -489,11 +356,21 @@ const structuredData = [
   grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
   gap: 1rem;
 }
-.link-grid ul { padding-left: 1rem; }
+.link-grid ul {
+  padding-left: 1rem;
+}
 
 #library {
-  margin-top: 3rem;
+  margin-top: 4rem;
   padding-top: 2rem;
   border-top: 2px solid #e5e7eb;
+}
+#library h2 {
+  color: #0d2340;
+  margin-bottom: 0.75rem;
+}
+#library > p {
+  color: #6b7280;
+  margin-bottom: 2rem;
 }
 </style>
