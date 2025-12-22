@@ -1,5 +1,6 @@
----
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { getBasePath, prefixWithBase } from '../utils/paths';
+const basePath = getBasePath(Astro.site);
 ---
 <BaseLayout
   title="Frequently Asked Questions | CORELOT Homes"
@@ -36,7 +37,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
     <div class="faq">
       <h3>What's the first step if I'm interested in working with CORELOT?</h3>
-      <p>Schedule a complimentary consultation call. We'll discuss your land (or land you're considering), budget, timeline, and vision. This is a no-pressure conversation to determine if on-your-lot construction is right for you and if we're a good fit. <a href="/contact">Contact us here</a>.</p>
+      <p>Schedule a complimentary consultation call. We'll discuss your land (or land you're considering), budget, timeline, and vision. This is a no-pressure conversation to determine if on-your-lot construction is right for you and if we're a good fit. <a href={prefixWithBase('/contact', basePath)}>Contact us here</a>.</p>
     </div>
 
     <div class="faq">
@@ -123,7 +124,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
     <div class="faq">
       <h3>Do you work with construction-to-permanent loans?</h3>
-      <p>Yes. Most of our clients use construction-to-permanent (construction-perm) loans, which convert to a traditional mortgage after construction. We work with several lender partners experienced in on-your-lot financing. <a href="/financing">See our financing guide</a>.</p>
+      <p>Yes. Most of our clients use construction-to-permanent (construction-perm) loans, which convert to a traditional mortgage after construction. We work with several lender partners experienced in on-your-lot financing. <a href={prefixWithBase('/financing', basePath)}>See our financing guide</a>.</p>
     </div>
 
     <div class="faq">
@@ -162,7 +163,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
     <div class="faq">
       <h3>What are the WL Martin Homes plans?</h3>
-      <p>WL Martin Homes is a modular home manufacturer we partner with for select projects. Their plans offer proven layouts, faster framing timelines, and factory-controlled quality. We also build stick-built custom plans. <a href="/plans">Browse all plans here</a>.</p>
+      <p>WL Martin Homes is a modular home manufacturer we partner with for select projects. Their plans offer proven layouts, faster framing timelines, and factory-controlled quality. We also build stick-built custom plans. <a href={prefixWithBase('/plans', basePath)}>Browse all plans here</a>.</p>
     </div>
 
     <div class="faq">
@@ -246,7 +247,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   <section class="cta-section">
     <h2>Still have questions?</h2>
     <p>We're here to help. Schedule a complimentary consultation to discuss your specific situation and get answers tailored to your project.</p>
-    <a href="/contact" class="cta-button">Contact Us</a>
+    <a href={prefixWithBase('/contact', basePath)} class="cta-button">Contact Us</a>
   </section>
 </BaseLayout>
 

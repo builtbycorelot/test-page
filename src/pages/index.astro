@@ -1,9 +1,11 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
+import { absoluteUrl, getBasePath, prefixWithBase } from '../utils/paths';
 
 const plans = (await getCollection('plans')).sort((a, b) => b.data.sqft - a.data.sqft);
 const land = (await getCollection('land')).sort((a, b) => a.data.address.localeCompare(b.data.address));
+const basePath = getBasePath(Astro.site);
 
 // Main site pages with hero images and enhanced descriptions
 const sitePages = [
@@ -102,7 +104,7 @@ const structuredData = [
     itemListElement: plans.map((plan, index) => ({
       '@type': 'ListItem',
       position: index + 1,
-      url: `/plans/${plan.id}/`,
+      url: absoluteUrl(`/plans/${plan.id}/`, Astro.site),
       name: plan.data.title,
     })),
   },
@@ -113,7 +115,7 @@ const structuredData = [
     itemListElement: land.map((lot, index) => ({
       '@type': 'ListItem',
       position: index + 1,
-      url: `/land/${lot.id}/`,
+      url: absoluteUrl(`/land/${lot.id}/`, Astro.site),
       name: lot.data.address,
     })),
   },
@@ -145,15 +147,15 @@ const structuredData = [
     </div>
     <div class="catalog-grid">
       {sitePages.map((page) => (
-        <a href={page.slug} class="catalog-card">
+        <a href={prefixWithBase(page.slug, basePath)} class="catalog-card">
           <div class="catalog-image">
-            <img src={page.heroImage} alt={page.title} />
+            <img src={prefixWithBase(page.heroImage, basePath)} alt={page.title} />
           </div>
           <div class="catalog-content">
             <p class="catalog-category">{page.category}</p>
             <h3>{page.title}</h3>
             <p class="catalog-description">{page.description}</p>
-            <p class="catalog-slug">{page.slug}</p>
+            <p class="catalog-slug">{prefixWithBase(page.slug, basePath)}</p>
           </div>
         </a>
       ))}
@@ -167,15 +169,15 @@ const structuredData = [
     </div>
     <div class="catalog-grid">
       {plans.map((plan) => (
-        <a href={`/plans/${plan.id}/`} class="catalog-card">
+        <a href={prefixWithBase(`/plans/${plan.id}/`, basePath)} class="catalog-card">
           <div class="catalog-image">
-            <img src={plan.data.heroImage} alt={plan.data.title} />
+            <img src={prefixWithBase(plan.data.heroImage, basePath)} alt={plan.data.title} />
           </div>
           <div class="catalog-content">
             <p class="catalog-category">{plan.data.category}</p>
             <h3>{plan.data.title}</h3>
             <p class="catalog-description">{plan.data.sqft} sqft • {plan.data.beds} beds • {plan.data.baths} baths</p>
-            <p class="catalog-slug">/plans/{plan.id}/</p>
+            <p class="catalog-slug">{prefixWithBase(`/plans/${plan.id}/`, basePath)}</p>
           </div>
         </a>
       ))}
@@ -189,15 +191,15 @@ const structuredData = [
     </div>
     <div class="catalog-grid">
       {land.map((parcel) => (
-        <a href={`/land/${parcel.id}/`} class="catalog-card">
+        <a href={prefixWithBase(`/land/${parcel.id}/`, basePath)} class="catalog-card">
           <div class="catalog-image">
-            <img src={parcel.data.heroImage} alt={parcel.data.address} />
+            <img src={prefixWithBase(parcel.data.heroImage, basePath)} alt={parcel.data.address} />
           </div>
           <div class="catalog-content">
             <p class="catalog-category">Homesite</p>
             <h3>{parcel.data.address}</h3>
             <p class="catalog-description">{parcel.data.status}</p>
-            <p class="catalog-slug">/land/{parcel.id}/</p>
+            <p class="catalog-slug">{prefixWithBase(`/land/${parcel.id}/`, basePath)}</p>
           </div>
         </a>
       ))}
@@ -215,7 +217,7 @@ const structuredData = [
         <p class="category-description">In-depth articles about building, financing, design, and land selection</p>
         <ul>
           {blogPages.map((page) => (
-            <li><a href={page.href}>{page.title}</a></li>
+            <li><a href={prefixWithBase(page.href, basePath)}>{page.title}</a></li>
           ))}
         </ul>
       </div>
@@ -224,7 +226,7 @@ const structuredData = [
         <p class="category-description">Plan catalogs, analytics setup, advertising guides, and signage templates</p>
         <ul>
           {marketingPages.map((page) => (
-            <li><a href={page.href}>{page.title}</a></li>
+            <li><a href={prefixWithBase(page.href, basePath)}>{page.title}</a></li>
           ))}
         </ul>
       </div>
@@ -233,7 +235,7 @@ const structuredData = [
         <p class="category-description">Brand guidelines, templates, brochures, and marketing collateral</p>
         <ul>
           {assetPages.map((page) => (
-            <li><a href={page.href}>{page.title}</a></li>
+            <li><a href={prefixWithBase(page.href, basePath)}>{page.title}</a></li>
           ))}
         </ul>
       </div>
@@ -241,13 +243,13 @@ const structuredData = [
         <h3>Quick Links</h3>
         <p class="category-description">Direct access to main Astro-powered pages</p>
         <ul>
-          <li><a href="/plans">/plans — Floor Plans Index</a></li>
-          <li><a href="/land">/land — Available Homesites</a></li>
-          <li><a href="/about">/about — About CORELOT</a></li>
-          <li><a href="/process">/process — Build Process</a></li>
-          <li><a href="/financing">/financing — Financing Guide</a></li>
-          <li><a href="/faq">/faq — FAQ</a></li>
-          <li><a href="/contact">/contact — Contact Us</a></li>
+          <li><a href={prefixWithBase('/plans', basePath)}>{prefixWithBase('/plans', basePath)} — Floor Plans Index</a></li>
+          <li><a href={prefixWithBase('/land', basePath)}>{prefixWithBase('/land', basePath)} — Available Homesites</a></li>
+          <li><a href={prefixWithBase('/about', basePath)}>{prefixWithBase('/about', basePath)} — About CORELOT</a></li>
+          <li><a href={prefixWithBase('/process', basePath)}>{prefixWithBase('/process', basePath)} — Build Process</a></li>
+          <li><a href={prefixWithBase('/financing', basePath)}>{prefixWithBase('/financing', basePath)} — Financing Guide</a></li>
+          <li><a href={prefixWithBase('/faq', basePath)}>{prefixWithBase('/faq', basePath)} — FAQ</a></li>
+          <li><a href={prefixWithBase('/contact', basePath)}>{prefixWithBase('/contact', basePath)} — Contact Us</a></li>
         </ul>
       </div>
       <div class="link-category">
@@ -255,7 +257,7 @@ const structuredData = [
         <p class="category-description">Legacy pages and operational documentation</p>
         <ul>
           {otherPages.map((page) => (
-            <li><a href={page.href}>{page.title}</a></li>
+            <li><a href={prefixWithBase(page.href, basePath)}>{page.title}</a></li>
           ))}
         </ul>
       </div>

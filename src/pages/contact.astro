@@ -1,5 +1,6 @@
----
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { getBasePath, prefixWithBase } from '../utils/paths';
+const basePath = getBasePath(Astro.site);
 ---
 <BaseLayout
   title="Contact CORELOT Homes"
@@ -38,7 +39,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         <h3>📍 Service Area</h3>
         <p class="contact-detail">Northern & Central Virginia</p>
         <p class="contact-note">Stafford, Spotsylvania, Culpeper, Fredericksburg, and DC metro areas</p>
-        <p><a href="/about#service-area">View full service area →</a></p>
+        <p><a href={prefixWithBase('/about#service-area', basePath)}>View full service area →</a></p>
       </div>
 
       <div class="info-card highlight-card">
@@ -95,7 +96,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         <p>No. The initial consultation call is complimentary. The design retainer comes later if we move forward together.</p>
       </div>
     </div>
-    <p class="faq-link"><a href="/faq">View all frequently asked questions →</a></p>
+    <p class="faq-link"><a href={prefixWithBase('/faq', basePath)}>View all frequently asked questions →</a></p>
   </section>
 </BaseLayout>
 
