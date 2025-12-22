@@ -5,54 +5,54 @@ import { getCollection } from 'astro:content';
 const plans = (await getCollection('plans')).sort((a, b) => b.data.sqft - a.data.sqft);
 const land = (await getCollection('land')).sort((a, b) => a.data.address.localeCompare(b.data.address));
 
-// Main site pages with hero images
+// Main site pages with hero images and enhanced descriptions
 const sitePages = [
   {
     title: 'About CORELOT',
     slug: '/about',
-    description: 'Company story, service area, and what sets us apart',
+    description: 'Learn our story, service area across Northern & Central Virginia, what drives our builder-first approach, and why we partner exclusively with WL Martin Homes designs for predictable quality.',
     heroImage: '/images/brands/corelot.svg',
     category: 'Company'
   },
   {
     title: 'Build Process',
     slug: '/process',
-    description: '8-phase timeline from consultation to final walkthrough',
+    description: 'Complete 8-phase build timeline from initial consultation through design retainer, permitting, site preparation, construction milestones, and final walkthrough. Includes FAQs and communication approach.',
     heroImage: '/images/brands/corelot.svg',
     category: 'Resources'
   },
   {
     title: 'Financing Guide',
     slug: '/financing',
-    description: 'Construction-perm loans and trusted lender partners',
+    description: 'Understand construction-to-permanent loans, budget components (land, site work, plans, construction), design retainer benefits, example project costs, and our trusted lender partners.',
     heroImage: '/images/brands/corelot.svg',
     category: 'Resources'
   },
   {
     title: 'Frequently Asked Questions',
     slug: '/faq',
-    description: '40+ Q&As about land, process, budget, and more',
+    description: 'Comprehensive FAQ covering getting started, land requirements, process timeline, financing options, design choices, construction phases, service area, and post-completion support.',
     heroImage: '/images/brands/corelot.svg',
     category: 'Resources'
   },
   {
     title: 'Contact Us',
     slug: '/contact',
-    description: 'Schedule a consultation to discuss your project',
+    description: 'Schedule a complimentary consultation to discuss your homesite and project goals. Includes contact information, what to prepare, and next steps after initial inquiry.',
     heroImage: '/images/brands/corelot.svg',
     category: 'Company'
   },
   {
-    title: 'Floor Plans',
+    title: 'Floor Plans Library',
     slug: '/plans',
-    description: `${plans.length} plans including CORELOT and WL Martin designs`,
+    description: `Browse all ${plans.length} CORELOT and WL Martin floor plans with square footage, bed/bath counts, galleries, and structural options. Each plan validated as code with consistent slugs and metadata.`,
     heroImage: '/images/brands/corelot.svg',
     category: 'Catalog'
   },
   {
-    title: 'Available Land',
+    title: 'Available Homesites',
     slug: '/land',
-    description: `${land.length} homesites ready for construction`,
+    description: `Explore ${land.length} CORELOT-ready land packages across Virginia with status, location details, gallery images, and WL Martin plan compatibility guidance. All listings validated before publishing.`,
     heroImage: '/images/brands/corelot.svg',
     category: 'Catalog'
   },
@@ -126,12 +126,23 @@ const structuredData = [
   structuredData={structuredData}
 >
   <header class="catalog-header">
-    <h1>CORELOT Homes Site Catalog</h1>
-    <p class="lede">Browse all pages, plans, and resources. Each page includes its slug (URL path) for easy reference.</p>
+    <div class="relaunch-banner">
+      <h1>CORELOT Homes — Relaunched</h1>
+      <p class="relaunch-tagline">On-your-lot custom homes built with transparency, process discipline, and proven WL Martin designs.</p>
+      <p class="relaunch-description">This site is built with Astro, validated as code, and structured for clarity. Every page, plan, and homesite is cataloged below with its URL slug for direct access.</p>
+    </div>
+
+    <div class="catalog-intro">
+      <h2>Complete Site Catalog</h2>
+      <p class="lede">Browse all pages, floor plans, homesites, and resources. Each item displays its slug (URL path) for easy reference and navigation.</p>
+    </div>
   </header>
 
   <section class="catalog-section">
-    <h2>Main Site Pages</h2>
+    <div class="section-header">
+      <h2>Core Pages</h2>
+      <p class="section-description">Essential information about CORELOT, the build process, financing, and how to get started.</p>
+    </div>
     <div class="catalog-grid">
       {sitePages.map((page) => (
         <a href={page.slug} class="catalog-card">
@@ -150,7 +161,10 @@ const structuredData = [
   </section>
 
   <section class="catalog-section">
-    <h2>Floor Plans ({plans.length})</h2>
+    <div class="section-header">
+      <h2>Floor Plans ({plans.length})</h2>
+      <p class="section-description">Complete CORELOT and WL Martin Homes collection. Each plan page includes galleries, specifications, structural options, and pricing guidance. Sorted by square footage (largest first).</p>
+    </div>
     <div class="catalog-grid">
       {plans.map((plan) => (
         <a href={`/plans/${plan.id}/`} class="catalog-card">
@@ -169,7 +183,10 @@ const structuredData = [
   </section>
 
   <section class="catalog-section">
-    <h2>Available Land ({land.length})</h2>
+    <div class="section-header">
+      <h2>Available Homesites ({land.length})</h2>
+      <p class="section-description">CORELOT-ready land packages across Northern and Central Virginia. Each listing includes location details, availability status, site photos, and compatible floor plan recommendations.</p>
+    </div>
     <div class="catalog-grid">
       {land.map((parcel) => (
         <a href={`/land/${parcel.id}/`} class="catalog-card">
@@ -188,47 +205,54 @@ const structuredData = [
   </section>
 
   <section id="library">
-    <h2>Full site library</h2>
-    <p>Every existing page remains available and is linked below for fast access.</p>
+    <div class="library-header">
+      <h2>Additional Resources & Archives</h2>
+      <p class="library-description">Legacy content, marketing materials, design assets, and educational blog posts. All static HTML preserved from previous site versions.</p>
+    </div>
     <div class="link-grid">
-      <div>
-        <h3>Blogs</h3>
+      <div class="link-category">
+        <h3>Educational Content (23 Posts)</h3>
+        <p class="category-description">In-depth articles about building, financing, design, and land selection</p>
         <ul>
           {blogPages.map((page) => (
             <li><a href={page.href}>{page.title}</a></li>
           ))}
         </ul>
       </div>
-      <div>
-        <h3>Marketing</h3>
+      <div class="link-category">
+        <h3>Marketing Tools (7 Items)</h3>
+        <p class="category-description">Plan catalogs, analytics setup, advertising guides, and signage templates</p>
         <ul>
           {marketingPages.map((page) => (
             <li><a href={page.href}>{page.title}</a></li>
           ))}
         </ul>
       </div>
-      <div>
-        <h3>Assets</h3>
+      <div class="link-category">
+        <h3>Design Assets (10 Items)</h3>
+        <p class="category-description">Brand guidelines, templates, brochures, and marketing collateral</p>
         <ul>
           {assetPages.map((page) => (
             <li><a href={page.href}>{page.title}</a></li>
           ))}
         </ul>
       </div>
-      <div>
-        <h3>Site Pages</h3>
+      <div class="link-category">
+        <h3>Quick Links</h3>
+        <p class="category-description">Direct access to main Astro-powered pages</p>
         <ul>
-          <li><a href="/plans">Plans Index</a></li>
-          <li><a href="/land">Land Index</a></li>
-          <li><a href="/about">About CORELOT</a></li>
-          <li><a href="/process">Build Process</a></li>
-          <li><a href="/financing">Financing Guide</a></li>
-          <li><a href="/faq">Frequently Asked Questions</a></li>
-          <li><a href="/contact">Contact Us</a></li>
+          <li><a href="/plans">/plans — Floor Plans Index</a></li>
+          <li><a href="/land">/land — Available Homesites</a></li>
+          <li><a href="/about">/about — About CORELOT</a></li>
+          <li><a href="/process">/process — Build Process</a></li>
+          <li><a href="/financing">/financing — Financing Guide</a></li>
+          <li><a href="/faq">/faq — FAQ</a></li>
+          <li><a href="/contact">/contact — Contact Us</a></li>
         </ul>
       </div>
-      <div>
-        <h3>Other references</h3>
+      <div class="link-category">
+        <h3>Archive & Reference</h3>
+        <p class="category-description">Legacy pages and operational documentation</p>
         <ul>
           {otherPages.map((page) => (
             <li><a href={page.href}>{page.title}</a></li>
@@ -241,16 +265,49 @@ const structuredData = [
 
 <style>
 .catalog-header {
-  text-align: center;
   margin-bottom: 3rem;
+}
+
+.relaunch-banner {
+  text-align: center;
+  background: linear-gradient(135deg, #0d2340 0%, #16325b 100%);
+  color: #fff;
+  padding: 3rem 2rem;
+  border-radius: 16px;
+  margin-bottom: 3rem;
+  box-shadow: 0 8px 24px rgba(13, 35, 64, 0.2);
+}
+.relaunch-banner h1 {
+  color: #fff;
+  font-size: 2.5rem;
+  margin: 0 0 1rem;
+  letter-spacing: -0.02em;
+}
+.relaunch-tagline {
+  font-size: 1.3rem;
+  color: #f18f01;
+  font-weight: 600;
+  margin: 0 0 1rem;
+  line-height: 1.4;
+}
+.relaunch-description {
+  font-size: 1.05rem;
+  color: #cbd5e1;
+  line-height: 1.7;
+  max-width: 75ch;
+  margin: 0 auto;
+}
+
+.catalog-intro {
+  text-align: center;
   padding-bottom: 2rem;
   border-bottom: 2px solid #e5e7eb;
 }
-.catalog-header h1 {
+.catalog-intro h2 {
   color: #0d2340;
   margin-bottom: 0.75rem;
 }
-.catalog-header .lede {
+.catalog-intro .lede {
   font-size: 1.1rem;
   color: #4b5563;
   line-height: 1.6;
@@ -261,6 +318,24 @@ const structuredData = [
 .catalog-section {
   margin-bottom: 4rem;
 }
+
+.section-header {
+  margin-bottom: 2rem;
+}
+.section-header h2 {
+  color: #0d2340;
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 3px solid #cc5500;
+}
+.section-description {
+  color: #6b7280;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  margin-top: 0.75rem;
+}
+
 .catalog-section h2 {
   color: #0d2340;
   font-size: 1.8rem;
@@ -365,12 +440,43 @@ const structuredData = [
   padding-top: 2rem;
   border-top: 2px solid #e5e7eb;
 }
-#library h2 {
+
+.library-header {
+  margin-bottom: 2.5rem;
+  text-align: center;
+}
+.library-header h2 {
   color: #0d2340;
   margin-bottom: 0.75rem;
+  font-size: 1.8rem;
 }
-#library > p {
+.library-description {
   color: #6b7280;
-  margin-bottom: 2rem;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  max-width: 70ch;
+  margin: 0 auto;
+}
+
+.link-category {
+  background: #f8f9fb;
+  padding: 1.5rem;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+}
+.link-category h3 {
+  color: #0d2340;
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  font-size: 1.15rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #cc5500;
+}
+.category-description {
+  color: #6b7280;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin-bottom: 1rem;
+  font-style: italic;
 }
 </style>
