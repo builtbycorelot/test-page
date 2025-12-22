@@ -1,5 +1,6 @@
----
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { getBasePath, prefixWithBase } from '../utils/paths';
+const basePath = getBasePath(Astro.site);
 ---
 <BaseLayout
   title="Financing your CORELOT home"
@@ -272,7 +273,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         <p>📞 <a href="tel:15407857500">540.785.7500</a></p>
         <p>📧 <a href="mailto:Sales@corelot.net">Sales@corelot.net</a></p>
       </div>
-      <a href="/contact" class="btn primary">Schedule Consultation</a>
+      <a href={prefixWithBase('/contact', basePath)} class="btn primary">Schedule Consultation</a>
     </div>
   </section>
 </BaseLayout>

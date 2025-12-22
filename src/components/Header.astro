@@ -1,4 +1,12 @@
 ---
+import { prefixWithBase } from '../utils/paths';
+
+interface Props {
+  basePath?: string;
+}
+
+const { basePath = '' } = Astro.props as Props;
+
 const navLinks = [
   { href: '/', label: 'Home' },
   { href: '/plans', label: 'Plans' },
@@ -13,12 +21,12 @@ const navLinks = [
 <header class="site-header">
   <div class="brand">
     <span class="brand-mark" aria-hidden="true">⬡</span>
-    <a href="/" class="brand-name">CORELOT Homes</a>
+    <a href={prefixWithBase('/', basePath)} class="brand-name">CORELOT Homes</a>
   </div>
   <nav aria-label="Primary navigation">
     <ul>
       {navLinks.map((link) => (
-        <li><a href={link.href}>{link.label}</a></li>
+        <li><a href={prefixWithBase(link.href, basePath)}>{link.label}</a></li>
       ))}
     </ul>
   </nav>

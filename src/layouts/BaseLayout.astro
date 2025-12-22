@@ -1,6 +1,7 @@
 ---
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import { absoluteUrl, getBasePath, prefixWithBase } from '../utils/paths';
 
 interface Props {
   title?: string;
@@ -11,7 +12,8 @@ interface Props {
 
 const { title, description, canonicalPath, structuredData } = Astro.props as Props;
 const site = Astro.site ?? new URL('https://corelothomes.com');
-const canonical = new URL(canonicalPath ?? Astro.url.pathname, site);
+const basePath = getBasePath(Astro.site);
+const canonical = new URL(prefixWithBase(canonicalPath ?? Astro.url.pathname, basePath), site);
 const dataBlocks = Array.isArray(structuredData)
   ? structuredData
   : structuredData
@@ -45,12 +47,12 @@ const sharedOrganization = {
     <meta property="og:title" content={title ?? 'CORELOT Homes'} />
     {description && <meta property="og:description" content={description} />}
     <meta property="og:url" content={canonical.toString()} />
-    <meta property="og:image" content={`${site.origin}/images/brands/corelot.svg`} />
+    <meta property="og:image" content={absoluteUrl('/images/brands/corelot.svg', site)} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title ?? 'CORELOT Homes'} />
     {description && <meta name="twitter:description" content={description} />}
-    <meta name="twitter:image" content={`${site.origin}/images/brands/corelot.svg`} />
-    <link rel="icon" href="/images/brands/corelot.svg" type="image/svg+xml" />
+    <meta name="twitter:image" content={absoluteUrl('/images/brands/corelot.svg', site)} />
+    <link rel="icon" href={absoluteUrl('/images/brands/corelot.svg', site)} type="image/svg+xml" />
     <style>
       :root {
         color-scheme: light;
@@ -91,10 +93,10 @@ const sharedOrganization = {
     ))}
   </head>
   <body>
-    <Header />
+    <Header basePath={basePath} />
     <main>
       <slot />
     </main>
-    <Footer />
+    <Footer basePath={basePath} />
   </body>
 </html>

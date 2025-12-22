@@ -2,6 +2,6 @@ import { defineConfig } from 'astro/config';
 
 export default defineConfig({
   output: 'static',
-  site: 'https://corelothomes.com',
-  base: '/',
+  site: 'https://builtbycorelot.github.io/test-page/',
+  base: '/test-page',
 });

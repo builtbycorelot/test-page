@@ -1,3 +1,11 @@
+import { prefixWithBase } from '../utils/paths';
+
+interface Props {
+  basePath?: string;
+}
+
+const { basePath = '' } = Astro.props as Props;
+---
 <footer class="site-footer">
   <div>
     <p class="brand">CORELOT Homes</p>
@@ -15,11 +23,11 @@
     </div>
     <div>
       <p class="footer-title">Quick Links</p>
-      <p><a href="/plans">Browse Plans</a></p>
-      <p><a href="/process">Build Process</a></p>
-      <p><a href="/financing">Financing</a></p>
-      <p><a href="/faq">FAQ</a></p>
-      <p><a href="/contact">Contact Us</a></p>
+      <p><a href={prefixWithBase('/plans', basePath)}>Browse Plans</a></p>
+      <p><a href={prefixWithBase('/process', basePath)}>Build Process</a></p>
+      <p><a href={prefixWithBase('/financing', basePath)}>Financing</a></p>
+      <p><a href={prefixWithBase('/faq', basePath)}>FAQ</a></p>
+      <p><a href={prefixWithBase('/contact', basePath)}>Contact Us</a></p>
     </div>
   </div>
 </footer>
