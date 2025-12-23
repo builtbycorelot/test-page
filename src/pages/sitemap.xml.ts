@@ -1,62 +1,34 @@
 import { getCollection } from 'astro:content';
+import fs from 'fs/promises';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
-const staticRoutes = [
-  '/',
-  '/plans/',
-  '/land/',
-  '/about',
-  '/process',
-  '/financing',
-  '/faq',
-  '/contact',
-  '/legacy-index.html',
-  '/CORELOT%20Operations%20Map.html',
-  '/INVOICE_AND_STATEMENT_STANDARD.md',
-  '/assets/brand-capability-matrix.html',
-  '/assets/brand-guide.html',
-  '/assets/community-brochure.html',
-  '/assets/email-template.html',
-  '/assets/house-plan-brochures.html',
-  '/assets/single-home-email.html',
-  '/assets/single-home-social.html',
-  '/assets/site-plan-exhibit.html',
-  '/assets/spot-lot-flyer.html',
-  '/assets/subdivision-email.html',
-  '/marketing/add-scott-hine.html',
-  '/marketing/analytics.html',
-  '/marketing/google-ads.html',
-  '/marketing/houzz.html',
-  '/marketing/lot-catalog.html',
-  '/marketing/plan-catalog.html',
-  '/marketing/white-oak-sign.html',
-  '/blogs/add-value-home.html',
-  '/blogs/affordable-meaning.html',
-  '/blogs/beautiful-lawn-guide.html',
-  '/blogs/build-on-your-lot.html',
-  '/blogs/construction-perm-loan-benefits.html',
-  '/blogs/corelot-design-process.html',
-  '/blogs/corelot-products.html',
-  '/blogs/financing-overview.html',
-  '/blogs/home-style-selection.html',
-  '/blogs/house-lot-options.html',
-  '/blogs/house-match.html',
-  '/blogs/lot-affordability.html',
-  '/blogs/lot-feasibility.html',
-  '/blogs/low-maintenance-homes.html',
-  '/blogs/planning-pricing-wlmartin.html',
-  '/blogs/production-vs-custom.html',
-  '/blogs/restaurant-vs-builder.html',
-  '/blogs/sales-process.html',
-  '/blogs/the-lot.html',
-  '/blogs/warranty-cost.html',
-  '/blogs/what-is-quality.html',
-  '/blogs/who-is-corelot.html',
-  '/blogs/why-rent-own.html'
-];
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const publicDir = path.resolve(__dirname, '../../public');
+
+async function listStaticRoutes(): Promise<string[]> {
+  const subdirs = ['', 'assets', 'marketing', 'blogs'];
+  const routes: string[] = ['/', '/plans/', '/land/', '/about', '/process', '/financing', '/faq', '/contact'];
+
+  for (const subdir of subdirs) {
+    const dirPath = path.join(publicDir, subdir);
+    const entries = await fs.readdir(dirPath, { withFileTypes: true });
+    for (const entry of entries) {
+      if (!entry.isFile()) continue;
+      if (!entry.name.match(/\.(html|md)$/i)) continue;
+      const href = path.posix.join('/', subdir, entry.name);
+      routes.push(encodeURI(href));
+    }
+  }
+
+  return routes.sort((a, b) => a.localeCompare(b));
+}
 
 export async function GET() {
   const plans = await getCollection('plans');
   const land = await getCollection('land');
+  const staticRoutes = await listStaticRoutes();
   const dynamicRoutes = [
     ...plans.map((plan) => `/plans/${plan.id}/`),
     ...land.map((lot) => `/land/${lot.id}/`),
