@@ -2,10 +2,85 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
 import { absoluteUrl, getBasePath, prefixWithBase } from '../utils/paths';
+import fs from 'fs/promises';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
 const plans = (await getCollection('plans')).sort((a, b) => b.data.sqft - a.data.sqft);
 const land = (await getCollection('land')).sort((a, b) => a.data.address.localeCompare(b.data.address));
 const basePath = getBasePath(Astro.site);
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const publicDir = path.resolve(__dirname, '../../public');
+
+interface StaticLink {
+  href: string;
+  title: string;
+}
+
+const decodeFileTitle = (fileName: string): string => {
+  const withoutExt = fileName.replace(/\.(html|md)$/i, '');
+  const normalized = withoutExt.replace(/_/g, ' ');
+  return normalized
+    .split(/[-\s]+/)
+    .filter(Boolean)
+    .map((part) => (part === part.toUpperCase() ? part : part.charAt(0).toUpperCase() + part.slice(1)))
+    .join(' ');
+};
+
+async function listStaticFiles(subdir: string): Promise<string[]> {
+  const targetDir = path.join(publicDir, subdir);
+  const entries = await fs.readdir(targetDir, { withFileTypes: true });
+  return entries
+    .filter((entry) => entry.isFile() && (/\.html$/i.test(entry.name) || /\.md$/i.test(entry.name)))
+    .map((entry) => entry.name)
+    .sort((a, b) => a.localeCompare(b));
+}
+
+function buildStaticLinks(files: string[], baseHref: string): StaticLink[] {
+  const normalizedBase = baseHref === '/' ? '' : baseHref.replace(/\/$/, '');
+  return files.map((file) => {
+    const rawPath = `${normalizedBase}/${file}`;
+    const href = encodeURI(rawPath.startsWith('/') ? rawPath : `/${rawPath}`);
+    return { href, title: decodeFileTitle(file) };
+  });
+}
+
+const [blogFiles, marketingFiles, assetFiles, rootStaticFiles] = await Promise.all([
+  listStaticFiles('blogs'),
+  listStaticFiles('marketing'),
+  listStaticFiles('assets'),
+  listStaticFiles(''),
+]);
+
+const blogPages = buildStaticLinks(blogFiles, '/blogs');
+const marketingPages = buildStaticLinks(marketingFiles, '/marketing');
+const assetPages = buildStaticLinks(assetFiles, '/assets');
+const otherPages = buildStaticLinks(rootStaticFiles, '/');
+
+const staticCollections = [
+  {
+    title: `Educational Content (${blogPages.length} Posts)`,
+    description: 'In-depth articles about building, financing, design, and land selection.',
+    pages: blogPages,
+  },
+  {
+    title: `Marketing Tools (${marketingPages.length} Items)`,
+    description: 'Plan catalogs, analytics setup, advertising guides, and signage templates.',
+    pages: marketingPages,
+  },
+  {
+    title: `Design Assets (${assetPages.length} Items)`,
+    description: 'Brand guidelines, templates, brochures, and marketing collateral.',
+    pages: assetPages,
+  },
+  {
+    title: 'Archive & Reference',
+    description: 'Legacy pages and operational documentation preserved from prior builds.',
+    pages: otherPages,
+  },
+];
 
 // Main site pages with hero images and enhanced descriptions
 const sitePages = [
@@ -60,42 +135,6 @@ const sitePages = [
   },
 ];
 
-const assetPages = [
-  { title: 'Brand capability matrix', href: '/assets/brand-capability-matrix.html' },
-  { title: 'Brand guide', href: '/assets/brand-guide.html' },
-  { title: 'Community brochure', href: '/assets/community-brochure.html' },
-  { title: 'Email template', href: '/assets/email-template.html' },
-  { title: 'House plan brochures', href: '/assets/house-plan-brochures.html' },
-  { title: 'Single home email', href: '/assets/single-home-email.html' },
-  { title: 'Single home social', href: '/assets/single-home-social.html' },
-  { title: 'Site plan exhibit', href: '/assets/site-plan-exhibit.html' },
-  { title: 'Spot lot flyer', href: '/assets/spot-lot-flyer.html' },
-  { title: 'Subdivision email', href: '/assets/subdivision-email.html' }
-];
-
-const marketingPages = [
-  { title: 'Add Scott Hine', href: '/marketing/add-scott-hine.html' },
-  { title: 'Analytics', href: '/marketing/analytics.html' },
-  { title: 'Google Ads', href: '/marketing/google-ads.html' },
-  { title: 'Houzz', href: '/marketing/houzz.html' },
-  { title: 'Lot catalog', href: '/marketing/lot-catalog.html' },
-  { title: 'Plan catalog', href: '/marketing/plan-catalog.html' },
-  { title: 'White Oak sign', href: '/marketing/white-oak-sign.html' }
-];
-
-const blogPages = [
-  'add-value-home','affordable-meaning','beautiful-lawn-guide','build-on-your-lot','construction-perm-loan-benefits','corelot-design-process','corelot-products','financing-overview','home-style-selection','house-lot-options','house-match','lot-affordability','lot-feasibility','low-maintenance-homes','planning-pricing-wlmartin','production-vs-custom','restaurant-vs-builder','sales-process','the-lot','warranty-cost','what-is-quality','who-is-corelot','why-rent-own'
-].map((slug) => ({
-  title: slug.split('-').map((part) => part.charAt(0).toUpperCase() + part.slice(1)).join(' '),
-  href: `/blogs/${slug}.html`
-}));
-
-const otherPages = [
-  { title: 'Legacy index', href: '/legacy-index.html' },
-  { title: 'Operations map', href: '/CORELOT%20Operations%20Map.html' },
-  { title: 'Invoice & Statement Standard', href: '/INVOICE_AND_STATEMENT_STANDARD.md' }
-];
-
 const structuredData = [
   {
     '@context': 'https://schema.org',
@@ -119,6 +158,19 @@ const structuredData = [
       name: lot.data.address,
     })),
   },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: 'Static HTML & Legacy Resources',
+    itemListElement: staticCollections
+      .flatMap((collection) => collection.pages)
+      .map((page, index) => ({
+        '@type': 'ListItem',
+        position: index + 1,
+        url: absoluteUrl(prefixWithBase(page.href, basePath), Astro.site),
+        name: page.title,
+      })),
+  },
 ];
 ---
 <BaseLayout
@@ -128,10 +180,26 @@ const structuredData = [
   structuredData={structuredData}
 >
   <header class="catalog-header">
-    <div class="relaunch-banner">
-      <h1>CORELOT Homes — Relaunched</h1>
-      <p class="relaunch-tagline">On-your-lot custom homes built with transparency, process discipline, and proven WL Martin designs.</p>
-      <p class="relaunch-description">This site is built with Astro, validated as code, and structured for clarity. Every page, plan, and homesite is cataloged below with its URL slug for direct access.</p>
+    <div class="hero-panel" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="pill">SEO-first site map</p>
+        <h1 id="hero-title">Every CORELOT resource, verified and link-checked.</h1>
+        <p class="lede">No more 404s: every Astro page, legacy HTML, and blog post lives here with crawlable slugs, accessible alt text, and partner imagery.</p>
+        <div class="hero-links">
+          <a class="btn-link" href={prefixWithBase('/contact', basePath)}>Schedule a consult</a>
+          <a class="btn-link ghost" href={prefixWithBase('/plans', basePath)}>Browse floor plans</a>
+        </div>
+      </div>
+      <div class="brand-logos" aria-label="Partner site previews">
+        <a class="logo-card" href="https://www.corelothomes.com" target="_blank" rel="noopener">
+          <img src={prefixWithBase('/images/brands/corelot.svg', basePath)} alt="CORELOT Homes website" loading="lazy" />
+          <span>corelothomes.com</span>
+        </a>
+        <a class="logo-card" href="https://www.wlmartinhomes.com" target="_blank" rel="noopener">
+          <img src={prefixWithBase('/images/brands/wl-martin.svg', basePath)} alt="WL Martin Homes website" loading="lazy" />
+          <span>wlmartinhomes.com</span>
+        </a>
+      </div>
     </div>
 
     <div class="catalog-intro">
@@ -212,55 +280,17 @@ const structuredData = [
       <p class="library-description">Legacy content, marketing materials, design assets, and educational blog posts. All static HTML preserved from previous site versions.</p>
     </div>
     <div class="link-grid">
-      <div class="link-category">
-        <h3>Educational Content (23 Posts)</h3>
-        <p class="category-description">In-depth articles about building, financing, design, and land selection</p>
-        <ul>
-          {blogPages.map((page) => (
-            <li><a href={prefixWithBase(page.href, basePath)}>{page.title}</a></li>
-          ))}
-        </ul>
-      </div>
-      <div class="link-category">
-        <h3>Marketing Tools (7 Items)</h3>
-        <p class="category-description">Plan catalogs, analytics setup, advertising guides, and signage templates</p>
-        <ul>
-          {marketingPages.map((page) => (
-            <li><a href={prefixWithBase(page.href, basePath)}>{page.title}</a></li>
-          ))}
-        </ul>
-      </div>
-      <div class="link-category">
-        <h3>Design Assets (10 Items)</h3>
-        <p class="category-description">Brand guidelines, templates, brochures, and marketing collateral</p>
-        <ul>
-          {assetPages.map((page) => (
-            <li><a href={prefixWithBase(page.href, basePath)}>{page.title}</a></li>
-          ))}
-        </ul>
-      </div>
-      <div class="link-category">
-        <h3>Quick Links</h3>
-        <p class="category-description">Direct access to main Astro-powered pages</p>
-        <ul>
-          <li><a href={prefixWithBase('/plans', basePath)}>{prefixWithBase('/plans', basePath)} — Floor Plans Index</a></li>
-          <li><a href={prefixWithBase('/land', basePath)}>{prefixWithBase('/land', basePath)} — Available Homesites</a></li>
-          <li><a href={prefixWithBase('/about', basePath)}>{prefixWithBase('/about', basePath)} — About CORELOT</a></li>
-          <li><a href={prefixWithBase('/process', basePath)}>{prefixWithBase('/process', basePath)} — Build Process</a></li>
-          <li><a href={prefixWithBase('/financing', basePath)}>{prefixWithBase('/financing', basePath)} — Financing Guide</a></li>
-          <li><a href={prefixWithBase('/faq', basePath)}>{prefixWithBase('/faq', basePath)} — FAQ</a></li>
-          <li><a href={prefixWithBase('/contact', basePath)}>{prefixWithBase('/contact', basePath)} — Contact Us</a></li>
-        </ul>
-      </div>
-      <div class="link-category">
-        <h3>Archive & Reference</h3>
-        <p class="category-description">Legacy pages and operational documentation</p>
-        <ul>
-          {otherPages.map((page) => (
-            <li><a href={prefixWithBase(page.href, basePath)}>{page.title}</a></li>
-          ))}
-        </ul>
-      </div>
+      {staticCollections.map((collection) => (
+        <div class="link-category">
+          <h3>{collection.title}</h3>
+          <p class="category-description">{collection.description}</p>
+          <ul>
+            {collection.pages.map((page) => (
+              <li><a href={prefixWithBase(page.href, basePath)}>{page.title}</a></li>
+            ))}
+          </ul>
+        </div>
+      ))}
     </div>
   </section>
 </BaseLayout>
@@ -270,34 +300,72 @@ const structuredData = [
   margin-bottom: 3rem;
 }
 
-.relaunch-banner {
-  text-align: center;
-  background: linear-gradient(135deg, #0d2340 0%, #16325b 100%);
-  color: #fff;
-  padding: 3rem 2rem;
+.hero-panel {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  align-items: center;
+  padding: 2rem;
+  border: 1px solid #e5e7eb;
   border-radius: 16px;
-  margin-bottom: 3rem;
-  box-shadow: 0 8px 24px rgba(13, 35, 64, 0.2);
+  background: #f8f9fb;
 }
-.relaunch-banner h1 {
+.hero-copy h1 {
+  margin: 0.5rem 0 0.75rem;
+  font-size: 2rem;
+}
+.hero-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+.btn-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.65rem 1.1rem;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 700;
+  background: #cc5500;
   color: #fff;
-  font-size: 2.5rem;
-  margin: 0 0 1rem;
-  letter-spacing: -0.02em;
+  border: 1px solid #cc5500;
 }
-.relaunch-tagline {
-  font-size: 1.3rem;
-  color: #f18f01;
+.btn-link.ghost {
+  background: transparent;
+  color: #cc5500;
+}
+.btn-link:hover,
+.btn-link:focus-visible {
+  box-shadow: 0 10px 30px rgba(204, 85, 0, 0.2);
+}
+.brand-logos {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+.logo-card {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  background: #fff;
+  text-decoration: none;
+  color: inherit;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+}
+.logo-card img {
+  height: 52px;
+  width: auto;
+  object-fit: contain;
+}
+.logo-card span {
+  color: #4b5563;
   font-weight: 600;
-  margin: 0 0 1rem;
-  line-height: 1.4;
-}
-.relaunch-description {
-  font-size: 1.05rem;
-  color: #cbd5e1;
-  line-height: 1.7;
-  max-width: 75ch;
-  margin: 0 auto;
 }
 
 .catalog-intro {
