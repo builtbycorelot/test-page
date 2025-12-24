@@ -3,319 +3,280 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CORELOT · Brand & Capability Matrix</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-8d6KQpT5s+JZApkD0uYBz0sMi5zBvmX3l3G5E9vZ35xT7V+AxLPvG9WBqjWX4hT3NsNV05jV+JOSjPq3pV8log==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <style>
-    /* ——— BRAND PALETTE ——— */
-    :root {
-      /* CORELOT */
-      --orange: #cc5500;
-      --orange-light: #e67a33;
-      --gray: #2c3e50;
-      --light-gray: #ecf0f1;
-      --ultra-light: #f8f9fa;
-      /* SheetPros + OnTime */
-      --blue: #005fa3;
-      --blue-light: #3498db;
-      /* Eveready */
-      --gold: #c7a008;
-      --gold-light: #f1c40f;
-      --black: #1a1a1a;
-      --white: #ffffff;
-    }
-
-    /* ——— BASE STYLES ——— */
-    *{box-sizing:border-box;margin:0;padding:0;}
-    html,body{
-      font-family:'Inter','Segoe UI',system-ui,-apple-system,sans-serif;
-      color:var(--black);
-      background:var(--ultra-light);
-      line-height:1.5;
-    }
-    @page{size:8.5in 11in;margin:0.5in;}
-    body{width:8.5in;height:11in;margin:0 auto;background:var(--white);}
-
-    header{text-align:center;padding:0.4in 0 0.2in;}
-    header h1{
-      font-size:2.4rem;
-      font-weight:300;
-      color:var(--gray);
-      letter-spacing:-0.02em;
-      margin-bottom:0.1in;
-    }
-    header .tagline{
-      font-style:italic;
-      font-size:1rem;
-      color:var(--orange);
-      font-weight:400;
-      letter-spacing:0.01em;
-    }
-    .accent-bar{
-      width:60%;
-      height:2px;
-      background:linear-gradient(90deg,var(--orange)0%,var(--gray)35%,var(--blue)65%,var(--gold)100%);
-      margin:0.25in auto;
-    }
-
-    .section-title{
-      font-size:1.1rem;
-      font-weight:500;
-      color:var(--gray);
-      text-align:center;
-      margin:0.3in 0 0.2in;
-      text-transform:uppercase;
-      letter-spacing:0.05em;
-    }
-
-    .brand-grid{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(3.2in,1fr));
-      gap:0.25in;
-      padding:0 0.15in;
-    }
-
-    .brand-card{
-      background:var(--white);
-      border:none;
-      border-radius:2px;
-      padding:0.4in 0.3in;
-      text-align:center;
-      box-shadow:0 1px 3px rgba(0,0,0,0.04);
-      position:relative;
-      transition:all 0.2s ease;
-      overflow:hidden;
-    }
-
-    .brand-card:hover{
-      box-shadow:0 4px 12px rgba(0,0,0,0.08);
-      transform:translateY(-1px);
-    }
-
-    .brand-card::before{
-      content:'';
-      position:absolute;
-      top:0;
-      left:0;
-      right:0;
-      height:3px;
-      background:var(--orange);
-    }
-
-    .icon-container{
-      width:clamp(48px,10vw,72px);
-      height:clamp(48px,10vw,72px);
-      margin:0 auto 0.2in;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      border-radius:50%;
-      background:var(--ultra-light);
-      position:relative;
-    }
-
-    .brand-card .icon{
-      font-size:1.8rem;
-      color:var(--orange);
-    }
-
-    .brand-logo{
-      width:80%;
-      height:80%;
-      object-fit:contain;
-      filter:brightness(0.8);
-      display:block;
-      margin:0 auto;
-    }
-
-    .brand-logo:not([src*="."]){
-      display:none;
-    }
-
-    /* Fallback icon styles */
-    .icon-fallback{
-      font-size:1.8rem;
-      color:var(--orange);
-      display:none;
-    }
-
-    .brand-card:has(.brand-logo[src=""]) .icon-fallback,
-    .brand-card:has(.brand-logo:not([src])) .icon-fallback{
-      display:block;
-    }
-
-    .brand-card h2{
-      font-size:1rem;
-      font-weight:600;
-      margin-bottom:0.15in;
-      color:var(--gray);
-      text-transform:uppercase;
-      letter-spacing:0.02em;
-    }
-
-    .brand-card p{
-      font-size:0.85rem;
-      line-height:1.5;
-      color:#5a6c7d;
-      font-weight:400;
-    }
-
-    /* Geometric Symbols */
-    .symbol{
-      position:absolute;
-      top:0.15in;
-      right:0.15in;
-      width:24px;
-      height:24px;
-      opacity:0.1;
-    }
-
-    .corelot-symbol{
-      background:linear-gradient(45deg, var(--orange) 0%, var(--orange-light) 100%);
-      clip-path:polygon(50% 0%, 0% 100%, 100% 100%);
-    }
-
-    .eveready-symbol{
-      background:linear-gradient(45deg, var(--gold) 0%, var(--gold-light) 100%);
-      clip-path:polygon(20% 0%, 0% 20%, 30% 50%, 0% 80%, 20% 100%, 80% 100%, 100% 80%, 70% 50%, 100% 20%, 80% 0%);
-    }
-
-    .blue-symbol{
-      background:linear-gradient(45deg, var(--blue) 0%, var(--blue-light) 100%);
-      border-radius:50%;
-    }
-
-    /* Brand-specific overrides */
-    .corelot::before { background:var(--orange); }
-    .corelot .icon { color:var(--orange); }
-    .corelot .icon-container { background:rgba(204,85,0,0.05); }
-
-    .eveready::before { background:var(--gold); }
-    .eveready .icon { color:var(--gold); }
-    .eveready .icon-container { background:rgba(199,160,8,0.05); }
-
-    .blue-brand::before { background:var(--blue); }
-    .blue-brand .icon { color:var(--blue); }
-    .blue-brand .icon-container { background:rgba(0,95,163,0.05); }
-
-    .mission{
-      background:var(--gray);
-      color:var(--white);
-      padding:0.2in;
-      text-align:center;
-      font-weight:300;
-      font-size:1rem;
-      margin:0.3in 0.5in;
-      letter-spacing:0.02em;
-      border-radius:1px;
-    }
-
-    /* Footer */
-    footer{
-      text-align:center;
-      font-size:0.75rem;
-      color:#7f8c8d;
-      margin-top:0.25in;
-      font-weight:400;
-    }
-    footer a{
-      color:var(--gray);
-      font-weight:500;
-      text-decoration:none;
-    }
-    footer .eho{
-      height:12px;
-      vertical-align:middle;
-      margin-right:4px;
-      opacity:0.8;
-    }
-  </style>
+  <title>Brand & Capability Matrix | CORELOT Marketing Assets</title>
+  <meta name="description" content="Strategic overview of how CORELOT brand positioning aligns with service capabilities. Learn when and how to use the Brand & Capability Matrix in your marketing communications.">
+  <link rel="stylesheet" href="../styles/corelot-brand.css">
 </head>
 <body>
-  <header>
-    <h1>Integrated Construction & Supply‑Chain Brands</h1>
-    <p class="tagline">Built for the way you live — Delivered on‑site & on‑time.</p>
-    <div class="accent-bar"></div>
+  <!-- Global Header -->
+  <header class="corelot-header">
+    <div class="corelot-header-inner">
+      <a href="../legacy-index.html">
+        <img src="../images/brands/corelot.svg" alt="CORELOT Homes Logo" class="corelot-logo">
+      </a>
+      <nav class="corelot-nav">
+        <a href="../blogs/index.html">Resource Library</a>
+        <a href="index.html">Marketing Assets</a>
+        <a href="../marketing/index.html">Marketing Tools</a>
+        <a href="brand-guide.html">Brand Guide</a>
+        <a href="https://www.corelothomes.com/contact/">Contact</a>
+      </nav>
+    </div>
   </header>
 
-  <!-- ─────────── TOP HALF ─────────── -->
-  <h3 class="section-title">Development, Homes & Construction</h3>
-  <section class="brand-grid">
-    <!-- CORELOT HOMES -->
-    <article class="brand-card corelot">
-      <div class="symbol corelot-symbol"></div>
-      <div class="icon-container">
-        <img src="CORELOT%20Homes%200001%20LOGO%20OB.png" alt="CORELOT Homes Logo" class="brand-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-        <i class="fas fa-home icon-fallback" aria-hidden="true"></i>
+  <!-- Breadcrumb -->
+  <div class="breadcrumb">
+    <div class="breadcrumb-inner">
+      <a href="../legacy-index.html">Home</a>
+      <span class="breadcrumb-separator">›</span>
+      <a href="index.html">Marketing Assets</a>
+      <span class="breadcrumb-separator">›</span>
+      <span class="breadcrumb-current">Brand & Capability Matrix</span>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <main class="corelot-container">
+    <div class="article-header text-center">
+      <h1>Brand & Capability Matrix</h1>
+      <p class="article-meta" style="font-size: 1.2rem; color: #444;">A strategic framework showing how our integrated family of companies delivers comprehensive construction, development, and technology services under unified brand standards.</p>
+    </div>
+
+    <!-- What It Is -->
+    <section class="article-section">
+      <h2>What Is the Brand & Capability Matrix?</h2>
+      <p>The Brand & Capability Matrix is a one-page visual document that presents our complete service ecosystem at a glance. It maps our six distinct brands—CORELOT Homes, CORELOT Construction, Consolidated Contracting, Eveready Builders Group, SheetPros, and OnTime Solutions—and clearly articulates how each contributes to our integrated approach to residential and commercial construction.</p>
+
+      <p>This strategic asset serves as both an internal alignment tool and an external marketing piece. We use it to help clients, partners, and stakeholders understand our unique position as a vertically integrated construction and technology company. Unlike competitors who focus on a single service area, we offer end-to-end solutions from land acquisition and design through construction, digital integration, and project delivery.</p>
+
+      <div class="highlight-box mt-lg">
+        <h3>Key Components</h3>
+        <ul>
+          <li><strong>Unified Header:</strong> Emphasizes our integrated approach with the tagline "Built for the way you live — Delivered on-site & on-time"</li>
+          <li><strong>Brand Cards:</strong> Each company is presented with consistent visual treatment, icons, and capability descriptions</li>
+          <li><strong>Visual Hierarchy:</strong> Top section focuses on construction and development; bottom section highlights digital integration and logistics</li>
+          <li><strong>Mission Statement:</strong> Central divider reinforces "One family of companies. Every capability under one roof."</li>
+          <li><strong>Professional Design:</strong> Clean, print-ready format (8.5" x 11") suitable for presentations, proposals, and leave-behinds</li>
+        </ul>
       </div>
-      <h2>CORELOT Homes</h2>
-      <p>Customizable home plans and land packages—helping families build affordably in the communities they love.</p>
-    </article>
+    </section>
 
-    <!-- CORELOT CONSTRUCTION -->
-    <article class="brand-card corelot">
-      <div class="symbol corelot-symbol"></div>
-      <div class="icon-container">
-        <img src="CORELOT%200001%20LOGO.png" alt="CORELOT Logo" class="brand-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-        <i class="fas fa-cube icon-fallback" aria-hidden="true"></i>
+    <!-- How to Use It -->
+    <section class="article-section">
+      <h2>How to Use the Brand & Capability Matrix</h2>
+      <p>This matrix is designed for both digital sharing and professional printing. We've optimized it for clarity and impact across multiple contexts, from client meetings to trade show displays.</p>
+
+      <div class="grid-2">
+        <div class="card">
+          <h3>Digital Applications</h3>
+          <ul>
+            <li><strong>Email Attachments:</strong> Include as a PDF when introducing CORELOT's full capabilities to prospective clients or partners</li>
+            <li><strong>Presentation Decks:</strong> Insert as a slide early in presentations to establish context for our integrated approach</li>
+            <li><strong>Website Resources:</strong> Offer as a downloadable PDF for visitors exploring our capabilities</li>
+            <li><strong>Proposal Supplements:</strong> Include in RFP responses and project proposals to demonstrate comprehensive service offerings</li>
+            <li><strong>Internal Training:</strong> Use during onboarding to help new team members understand how our brands work together</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Print Applications</h3>
+          <ul>
+            <li><strong>Client Meetings:</strong> Print on quality paper stock and bring to first meetings or consultations</li>
+            <li><strong>Trade Shows & Events:</strong> Display in booth materials or include in information packets</li>
+            <li><strong>Proposal Packages:</strong> Include as a cover sheet or early page in bound proposals</li>
+            <li><strong>Leave-Behind Materials:</strong> Print in quantity for networking events, conferences, and site visits</li>
+            <li><strong>Office Displays:</strong> Frame and display in reception areas or conference rooms</li>
+          </ul>
+        </div>
       </div>
-      <h2>CORELOT Construction</h2>
-      <p>Neighbour‑scaled residential and light‑commercial builds, integrating local trades with modular efficiencies.</p>
-    </article>
 
-    <!-- CONSOLIDATED CONTRACTING -->
-    <article class="brand-card corelot">
-      <div class="symbol corelot-symbol"></div>
-      <div class="icon-container">
-        <i class="fas fa-clipboard-list icon-fallback" aria-hidden="true"></i>
+      <div class="highlight-box mt-lg">
+        <h3>Customization Options</h3>
+        <p>While the matrix is designed as a complete, standalone piece, we can customize it for specific uses:</p>
+        <ul>
+          <li>Add specific project examples or case studies beneath each brand card</li>
+          <li>Include contact information for specific divisions or team members</li>
+          <li>Highlight particular capabilities relevant to a target client or industry</li>
+          <li>Create industry-specific versions emphasizing residential vs. commercial services</li>
+        </ul>
+        <p style="margin-top: 1rem;"><strong>Request customization:</strong> Contact our marketing team if you need a tailored version for a specific client presentation or industry event.</p>
       </div>
-      <h2>Consolidated Contracting</h2>
-      <p>Administrative entity delivering comprehensive Project Management Office services—coordinating resources, timelines, and deliverables across all project phases.</p>
-    </article>
+    </section>
 
-    <!-- EVEREADY BUILDERS GROUP -->
-    <article class="brand-card eveready">
-      <div class="symbol eveready-symbol"></div>
-      <div class="icon-container">
+    <!-- When to Use It -->
+    <section class="article-section">
+      <h2>When to Use the Brand & Capability Matrix</h2>
+      <p>The matrix is most effective in situations where stakeholders need to understand our full scope of services and how our integrated model creates value. Here are the ideal scenarios for deployment.</p>
 
-        <i class="fas fa-landmark icon-fallback" aria-hidden="true"></i>
+      <div class="card">
+        <h3>Initial Client Consultations</h3>
+        <p>Use the matrix early in conversations with prospective clients who may not fully understand CORELOT's integrated approach. It helps position us as a comprehensive partner rather than a single-service provider. This is especially valuable when clients initially contact us for one service (like a home plan) but could benefit from our other capabilities (land selection, permitting support, construction management).</p>
+        <p style="margin-top: 1rem;"><strong>Talking Point:</strong> "We're unique in this market because we can support your project from initial concept through final construction and beyond, with integrated digital tools that keep everything on schedule."</p>
       </div>
-      <h2>Eveready Builders Group</h2>
-      <p>Program delivery for civic and institutional projects—lean workflows, BIM coordination, and quality craftsmanship.</p>
-    </article>
-  </section>
 
-  <!-- Mission Divider -->
-  <div class="mission">One family of companies. Every capability under one roof.</div>
-
-  <!-- ─────────── BOTTOM HALF ─────────── -->
-  <h3 class="section-title">Digital Integration & Field Logistics</h3>
-  <section class="brand-grid">
-    <!-- SHEETPROS -->
-    <article class="brand-card blue-brand">
-      <div class="symbol blue-symbol"></div>
-      <div class="icon-container">
-        <img src="SheetPros%20Logo%20Symbol%20(1).png" alt="SheetPros Logo" class="brand-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-        <i class="fas fa-sitemap icon-fallback" aria-hidden="true"></i>
+      <div class="card mt-lg">
+        <h3>Strategic Partnership Discussions</h3>
+        <p>When meeting with realtors, land developers, municipal planners, or other potential partners, the matrix quickly establishes credibility and demonstrates scale. Partners need to understand that we're not just a small builder—we're a family of companies with complementary strengths that create operational efficiencies and project delivery advantages.</p>
+        <p style="margin-top: 1rem;"><strong>Use Case:</strong> Presenting to a developer who's considering partnership options for a new subdivision. The matrix shows we can handle everything from site planning (OnTime Solutions) through construction (CORELOT Construction) to home sales (CORELOT Homes).</p>
       </div>
-      <h2>SheetPros</h2>
-      <p>Integrator of work‑management, CRM, and accounting platforms—bringing connected workflows to businesses, individuals, and government agencies.</p>
-    </article>
 
-    <!-- ON TIME SOLUTIONS -->
-    <article class="brand-card blue-brand">
-      <div class="symbol blue-symbol"></div>
-      <div class="icon-container">
-        <img src="000%20OTS%20LOGO.jpg" alt="OnTime Solutions Logo" class="brand-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-        <i class="fas fa-vector-square icon-fallback" aria-hidden="true"></i>
+      <div class="card mt-lg">
+        <h3>RFPs and Competitive Bids</h3>
+        <p>Include the matrix in formal proposal submissions to differentiate CORELOT from competitors. Many RFPs ask specifically about company capabilities, resources, and integrated services. The matrix provides a professional, visual answer that's more impactful than a text-only capabilities statement.</p>
+        <p style="margin-top: 1rem;"><strong>Strategic Advantage:</strong> Most competitors can only claim one or two capability areas. Our matrix demonstrates comprehensive coverage that reduces client coordination burden and project risk.</p>
       </div>
-      <h2>OnTime Solutions</h2>
-      <p>Geospatial software for infrastructure, urban planning, and field operations—turning location data into actionable insights.</p>
-    </article>
-  </section>
 
-  <footer>
-    <p><strong>540‑785‑7500</strong> · <a href="mailto:sales@corelot.net">sales@corelot.net</a> · <a href="https://corelothomes.com">corelothomes.com</a></p>
-    <img src="https://upload.wikimedia.org/wikipedia/commons/8/80/Equal_Housing_Opportunity_Logo.svg" alt="Equal Housing Opportunity" class="eho">Equal Housing Opportunity
+      <div class="card mt-lg">
+        <h3>Educational & Networking Events</h3>
+        <p>At industry conferences, community events, or networking sessions, the matrix serves as an effective conversation starter and takeaway. It's substantial enough to demonstrate professionalism while concise enough that busy contacts will actually review it later.</p>
+      </div>
+
+      <div class="card mt-lg">
+        <h3>Internal Team Alignment</h3>
+        <p>Use the matrix during team meetings, cross-company collaborations, and onboarding sessions. It helps everyone understand how their work fits into the larger ecosystem and identifies opportunities for internal referrals between divisions.</p>
+      </div>
+    </section>
+
+    <!-- Best Practices -->
+    <section class="article-section">
+      <h2>Best Practices & Usage Tips</h2>
+
+      <div class="grid-2">
+        <div class="card">
+          <h3>Do's</h3>
+          <ul>
+            <li>Print on high-quality paper (minimum 28lb, preferably 32lb bright white)</li>
+            <li>Pair with specific service materials relevant to the client's immediate needs</li>
+            <li>Use as a conversation guide—walk through each brand and ask which services align with client goals</li>
+            <li>Keep digital copies easily accessible on tablets or laptops for impromptu presentations</li>
+            <li>Update regularly if brand descriptions or service offerings change</li>
+            <li>Reference the matrix when making cross-company referrals or identifying upsell opportunities</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Don'ts</h3>
+          <ul>
+            <li>Don't assume everyone needs all services—use it to identify relevant capabilities, not overwhelm</li>
+            <li>Don't distribute in isolation—always pair with context (email explanation, verbal presentation, etc.)</li>
+            <li>Don't print on low-quality paper or from low-resolution files—it undermines our professional image</li>
+            <li>Don't alter the design or remove brand sections without marketing team approval</li>
+            <li>Don't use outdated versions—check with marketing to ensure you have the current file</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="highlight-box mt-lg">
+        <h3>Effective Presentation Sequence</h3>
+        <p>When presenting the matrix in person, we recommend this flow:</p>
+        <ol style="margin-left: 2rem; margin-top: 1rem;">
+          <li><strong>Start with Context:</strong> "Let me show you how CORELOT is structured differently than most builders..."</li>
+          <li><strong>Explain the Integration:</strong> Point out the mission statement—"One family of companies. Every capability under one roof."</li>
+          <li><strong>Walk Through Relevance:</strong> Focus on the 2-3 brands most relevant to the client's current needs</li>
+          <li><strong>Highlight Advantages:</strong> Emphasize streamlined communication, accountability, and timeline benefits</li>
+          <li><strong>Invite Questions:</strong> "Which of these capabilities are most interesting for your project?"</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- Messaging Framework -->
+    <section class="article-section">
+      <h2>Messaging Framework & Talk Track</h2>
+      <p>The matrix is most effective when paired with confident, clear verbal messaging. Here's our recommended talk track for different audiences.</p>
+
+      <div class="card">
+        <h3>For Residential Homebuyers</h3>
+        <p style="font-style: italic; color: #666; margin-bottom: 1rem;">"Most builders can only help you once you have land and have selected a plan. We're different. Through our family of companies, we can help you find the right lot, navigate permitting and site work, customize your home plan, manage construction, and even provide digital tools to track progress every step of the way. Everything stays under one roof, which means better communication and accountability for you."</p>
+      </div>
+
+      <div class="card mt-lg">
+        <h3>For Commercial or Institutional Clients</h3>
+        <p style="font-style: italic; color: #666; margin-bottom: 1rem;">"CORELOT brings together construction management, digital integration, and field logistics expertise. Whether you need traditional building services through CORELOT Construction and Eveready Builders Group, or specialized digital capabilities through SheetPros and OnTime Solutions, we coordinate everything internally. That integration reduces your coordination burden and keeps projects on schedule."</p>
+      </div>
+
+      <div class="card mt-lg">
+        <h3>For Strategic Partners (Developers, Realtors, Municipalities)</h3>
+        <p style="font-style: italic; color: #666; margin-bottom: 1rem;">"We've intentionally built complementary capabilities across six brands so we can support projects from concept through completion. For a subdivision development, that might mean OnTime Solutions handles geospatial planning, CORELOT Homes provides the building plans and sales support, CORELOT Construction delivers the builds, and SheetPros integrates all the project management systems. One point of contact, one accountability structure, seamless execution."</p>
+      </div>
+    </section>
+
+    <!-- Technical Specifications -->
+    <section class="article-section">
+      <h2>Technical Specifications & File Formats</h2>
+
+      <div class="grid-2">
+        <div class="card">
+          <h3>Print Specifications</h3>
+          <ul>
+            <li><strong>Size:</strong> 8.5" x 11" (US Letter)</li>
+            <li><strong>Orientation:</strong> Portrait</li>
+            <li><strong>Color Mode:</strong> Full color (CMYK for offset printing, RGB for digital)</li>
+            <li><strong>Resolution:</strong> 300 DPI minimum</li>
+            <li><strong>Recommended Paper:</strong> 32lb bright white or premium matte</li>
+            <li><strong>Finish:</strong> Matte or uncoated (avoid glossy for professional context)</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Available File Formats</h3>
+          <ul>
+            <li><strong>PDF:</strong> Standard format for printing and digital sharing</li>
+            <li><strong>HTML:</strong> Web-optimized version for online viewing</li>
+            <li><strong>PNG:</strong> High-resolution image for presentations (300 DPI)</li>
+            <li><strong>Source Files:</strong> Available on request for authorized customization</li>
+          </ul>
+          <p style="margin-top: 1rem; font-size: 0.9rem; color: #666;"><strong>File Location:</strong> Contact marketing@corelot.net for current version files and print-ready assets.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Related Resources -->
+    <section class="article-section">
+      <h2>Related Marketing Resources</h2>
+      <p>The Brand & Capability Matrix works best when used alongside other CORELOT marketing assets. Consider pairing it with these complementary materials.</p>
+
+      <div class="grid-3">
+        <div class="card">
+          <h3><a href="brand-guide.html">Brand Guide</a></h3>
+          <p>Reference our complete brand standards to ensure any customized versions maintain visual consistency and brand integrity.</p>
+        </div>
+
+        <div class="card">
+          <h3><a href="house-plan-brochures.html">House Plan Brochures</a></h3>
+          <p>After presenting the capability matrix, follow up with specific plan brochures for clients interested in CORELOT Homes services.</p>
+        </div>
+
+        <div class="card">
+          <h3><a href="community-brochure.html">Community Brochures</a></h3>
+          <p>For subdivision or multi-home projects, pair the matrix with community-specific marketing materials that showcase completed work.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Call to Action -->
+    <div class="highlight-box text-center mt-xl">
+      <h2>Need the Brand & Capability Matrix Files?</h2>
+      <p style="font-size: 1.1rem; margin-bottom: 1.5rem;">We can provide print-ready PDFs, customized versions for specific clients, or source files for authorized marketing use. Reach out to get the latest version or discuss customization options.</p>
+      <div class="cta-group" style="justify-content: center;">
+        <a href="https://www.corelothomes.com/contact/" class="cta-button cta-primary">Request Matrix Files</a>
+        <a href="index.html" class="cta-button cta-secondary">View All Marketing Assets</a>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="corelot-footer">
+    <div class="footer-content">
+      <p style="font-size: 1.1rem; margin-bottom: 0.5rem;">&copy; 2025 CORELOT Homes</p>
+      <p style="margin-bottom: 0.5rem;">
+        <a href="mailto:sales@corelot.net">sales@corelot.net</a> |
+        <a href="https://www.corelothomes.com">www.corelothomes.com</a>
+      </p>
+      <div class="eho-badge">
+        <span class="eho-icon">=</span>
+        <span>Equal Housing Opportunity</span>
+      </div>
+    </div>
   </footer>
 </body>
 </html>

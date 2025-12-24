@@ -1,0 +1,380 @@
+/* CORELOT Homes Brand Stylesheet */
+/* Unified design system for consistent brand experience */
+
+:root {
+  /* Brand Colors */
+  --brand-orange: #cc5500;
+  --brand-orange-hover: #ff6600;
+  --brand-orange-light: #ff9642;
+  --brand-black: #000000;
+  --brand-gray: #888888;
+  --brand-gray-light: #f4f4f4;
+  --brand-gray-dark: #333333;
+  --brand-white: #ffffff;
+
+  /* Typography Scale */
+  --font-family-base: Calibri, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 2rem;
+  --font-size-4xl: 2.5rem;
+
+  /* Spacing */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2rem;
+  --space-xl: 3rem;
+  --space-2xl: 4rem;
+
+  /* Layout */
+  --container-width: 1200px;
+  --border-radius: 8px;
+  --border-radius-sm: 5px;
+}
+
+/* Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-family-base);
+  color: var(--brand-black);
+  background-color: var(--brand-gray-light);
+  line-height: 1.6;
+  font-size: var(--font-size-base);
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--brand-orange);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: var(--space-md);
+}
+
+h1 {
+  font-size: var(--font-size-4xl);
+  margin-bottom: var(--space-lg);
+}
+
+h2 {
+  font-size: var(--font-size-3xl);
+}
+
+h3 {
+  font-size: var(--font-size-2xl);
+}
+
+h4 {
+  font-size: var(--font-size-xl);
+}
+
+p {
+  margin-bottom: var(--space-sm);
+}
+
+a {
+  color: var(--brand-orange);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--brand-orange-hover);
+  text-decoration: underline;
+}
+
+/* Global Header Navigation */
+.corelot-header {
+  background-color: var(--brand-white);
+  border-bottom: 2px solid var(--brand-orange);
+  padding: var(--space-sm) var(--space-lg);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.corelot-header-inner {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+}
+
+.corelot-logo {
+  height: 40px;
+  display: block;
+}
+
+.corelot-nav {
+  display: flex;
+  gap: var(--space-lg);
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.corelot-nav a {
+  color: var(--brand-gray-dark);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: var(--font-size-base);
+  transition: color 0.2s ease;
+}
+
+.corelot-nav a:hover {
+  color: var(--brand-orange);
+  text-decoration: none;
+}
+
+/* Breadcrumb Navigation */
+.breadcrumb {
+  background-color: var(--brand-white);
+  padding: var(--space-sm) var(--space-lg);
+  font-size: var(--font-size-sm);
+}
+
+.breadcrumb-inner {
+  max-width: var(--container-width);
+  margin: 0 auto;
+}
+
+.breadcrumb a {
+  color: var(--brand-gray);
+}
+
+.breadcrumb-separator {
+  margin: 0 var(--space-xs);
+  color: var(--brand-gray);
+}
+
+.breadcrumb-current {
+  color: var(--brand-black);
+}
+
+/* Main Container */
+.corelot-container {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: var(--space-xl) var(--space-lg);
+  background-color: var(--brand-white);
+  min-height: 60vh;
+}
+
+/* Content Container */
+.content-wrapper {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Call-to-Action Buttons */
+.cta-button {
+  display: inline-block;
+  padding: 0.875rem 2rem;
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  text-decoration: none;
+  border-radius: var(--border-radius-sm);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: none;
+  text-align: center;
+}
+
+.cta-primary {
+  background-color: var(--brand-orange);
+  color: var(--brand-white);
+  border: 2px solid var(--brand-orange);
+}
+
+.cta-primary:hover {
+  background-color: var(--brand-orange-hover);
+  border-color: var(--brand-orange-hover);
+  text-decoration: none;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(204, 85, 0, 0.3);
+}
+
+.cta-secondary {
+  background-color: transparent;
+  color: var(--brand-orange);
+  border: 2px solid var(--brand-orange);
+}
+
+.cta-secondary:hover {
+  background-color: var(--brand-orange);
+  color: var(--brand-white);
+  text-decoration: none;
+  transform: translateY(-2px);
+}
+
+.cta-group {
+  display: flex;
+  gap: var(--space-md);
+  margin: var(--space-lg) 0;
+  flex-wrap: wrap;
+}
+
+/* Cards */
+.card {
+  background-color: var(--brand-white);
+  border: 1px solid #e0e0e0;
+  border-radius: var(--border-radius);
+  padding: var(--space-lg);
+  margin-bottom: var(--space-md);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.card:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.card h3 {
+  margin-bottom: var(--space-sm);
+}
+
+/* Grid Layouts */
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--space-lg);
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-lg);
+}
+
+/* Footer */
+.corelot-footer {
+  background-color: var(--brand-gray-dark);
+  color: var(--brand-white);
+  padding: var(--space-xl) var(--space-lg);
+  text-align: center;
+}
+
+.corelot-footer a {
+  color: var(--brand-orange-light);
+}
+
+.corelot-footer a:hover {
+  color: var(--brand-white);
+}
+
+.footer-content {
+  max-width: var(--container-width);
+  margin: 0 auto;
+}
+
+.eho-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  margin-top: var(--space-sm);
+  font-size: var(--font-size-sm);
+}
+
+.eho-icon {
+  width: 24px;
+  height: 24px;
+  background-color: var(--brand-white);
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: var(--brand-gray-dark);
+  font-size: var(--font-size-xs);
+}
+
+/* Article/Blog Styling */
+.article-header {
+  margin-bottom: var(--space-xl);
+}
+
+.article-meta {
+  font-size: var(--font-size-sm);
+  color: var(--brand-gray);
+  font-style: italic;
+  margin-bottom: var(--space-sm);
+}
+
+.article-section {
+  margin-bottom: var(--space-xl);
+}
+
+.article-section ul, .article-section ol {
+  margin-left: var(--space-lg);
+  margin-bottom: var(--space-md);
+}
+
+.article-section li {
+  margin-bottom: var(--space-xs);
+}
+
+/* Highlight Boxes */
+.highlight-box {
+  background-color: #fff5ed;
+  border-left: 4px solid var(--brand-orange);
+  padding: var(--space-md);
+  margin: var(--space-lg) 0;
+  border-radius: var(--border-radius-sm);
+}
+
+.highlight-box h3 {
+  margin-top: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  :root {
+    --font-size-4xl: 2rem;
+    --font-size-3xl: 1.5rem;
+  }
+
+  .corelot-header-inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .corelot-nav {
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-sm);
+  }
+
+  .cta-group {
+    flex-direction: column;
+  }
+
+  .cta-button {
+    width: 100%;
+  }
+
+  .grid-2, .grid-3 {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Utility Classes */
+.text-center { text-align: center; }
+.text-gray { color: var(--brand-gray); }
+.mb-lg { margin-bottom: var(--space-lg); }
+.mb-xl { margin-bottom: var(--space-xl); }
+.mt-lg { margin-top: var(--space-lg); }
+.mt-xl { margin-top: var(--space-xl); }
